@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import AuthService from "../../services/auth/AuthService";
 import menuIcon from "../../assets/menu.svg";
 import closeIcon from "../../assets/close.png";
