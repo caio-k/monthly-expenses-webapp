@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom
 import AuthService from "./services/auth/AuthService";
 import Login from "./routes/publicForm/login/login";
 import SignUp from "./routes/publicForm/signup/signup";
+import NotFound from "./components/notfound/notfound";
 
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={props =>
@@ -23,7 +24,7 @@ function Routes() {
           <Route exact path="/" component={() => <h1>Home</h1>}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/signup" component={SignUp}/>
-          <Route exact path="/notfound" component={() => <h1>404</h1>}/>
+          <Route exact path="/notfound" component={NotFound}/>
           <PrivateRoute exact path="/expenses" component={() => <h1>Expenses</h1>}/>
           <PrivateRoute exact path="/settings" component={() => <h1>Settings</h1>}/>
           <Redirect to="/notfound"/>
