@@ -9,7 +9,9 @@ function Header() {
 
   return (
     <header>
-      <span>Monthly Expenses</span>
+      <a href="/">
+        <span>Monthly Expenses</span>
+      </a>
 
       <input type="checkbox" id="chk"/>
       <label htmlFor="chk" className="show-menu-btn">
