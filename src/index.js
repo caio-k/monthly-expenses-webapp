@@ -6,11 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import {ToastProvider} from 'react-toast-notifications';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ToastProvider placement="top-right">
-      <App/>
-    </ToastProvider>
-  </React.StrictMode>,
+  <ToastProvider placement="top-right">
+    <App/>
+  </ToastProvider>,
   document.getElementById('root')
 );
 
