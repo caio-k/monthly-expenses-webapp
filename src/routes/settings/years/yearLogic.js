@@ -82,8 +82,13 @@ const useYear = () => {
       YearService.createYear(user.id, newYear).then(
         response => {
           handleSuccess("Ano " + newYear + " cadastrado com sucesso!");
+
+          let yearsBackup = [...years];
+          yearsBackup.push(response.data);
+          yearsBackup = sortYearsDecreasingly(yearsBackup);
           setNewYear("");
-          setYears(years => [...years, response.data]);
+          setYears(yearsBackup);
+
           createYearBtn.classList.remove('create-year-btn-loading');
         },
         error => {
@@ -107,13 +112,14 @@ const useYear = () => {
       YearService.updateYear(user.id, yearOnFocus.id, newYearEdited).then(
         response => {
           const yearIndex = getYearIndexByYearId(yearOnFocus.id);
-          const yearsBackup = [...years];
+          let yearsBackup = [...years];
           const year = {...years[yearIndex]};
 
           handleSuccess("Ano " + year.yearNumber + " atualizado para " + newYearEdited + " com sucesso!");
 
           year["yearNumber"] = response.data.yearNumber;
           yearsBackup[yearIndex] = year;
+          yearsBackup = sortYearsDecreasingly(yearsBackup);
 
           setYears(yearsBackup);
           setNewYearEdited("");
@@ -160,6 +166,13 @@ const useYear = () => {
       appearance: 'error',
       autoDismiss: true,
     })
+  }
+
+  const sortYearsDecreasingly = (newYearsList) => {
+    newYearsList.sort(function (a, b) {
+      return a.yearNumber < b.yearNumber ? 1 : -1;
+    });
+    return newYearsList;
   }
 
   const checkIfNotExitsAYear = (year) => {
