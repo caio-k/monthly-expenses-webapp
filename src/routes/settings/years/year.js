@@ -6,6 +6,7 @@ import SimpleButton from "../../../components/buttons/simpleButton";
 import editIcon from "../../../assets/edit.svg";
 import trashIcon from "../../../assets/trash.svg";
 import "./year.css";
+import VerticallyResponsiveTable from "../../../components/tables/verticallyResponsiveTable/verticallyResponsiveTable";
 
 function Year() {
   const [{years, loadingComponent, newYear, yearOnFocus, newYearEdited, editModalVisible, deleteModalVisible},
@@ -86,7 +87,7 @@ function Year() {
               )}
 
               {years.length > 0 && (
-                <table className="content-table">
+                <VerticallyResponsiveTable>
                   <thead>
                   <tr>
                     <th>Ano</th>
@@ -97,7 +98,7 @@ function Year() {
                   <tbody>
                   {years.map(renderRow)}
                   </tbody>
-                </table>
+                </VerticallyResponsiveTable>
               )}
             </div>
           </>
