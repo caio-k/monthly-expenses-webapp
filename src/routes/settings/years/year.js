@@ -3,10 +3,11 @@ import useYear from "./yearLogic";
 import RoundLoading from "../../../components/loading/roundLoading/roundLoading";
 import Modal from "../../../components/modal/modal";
 import SimpleButton from "../../../components/buttons/simpleButton";
+import SimpleSlidingForm from "../../../components/forms/simpleSlidingForm/simpleSlidingForm";
+import VerticallyResponsiveTable from "../../../components/tables/verticallyResponsiveTable/verticallyResponsiveTable";
 import editIcon from "../../../assets/edit.svg";
 import trashIcon from "../../../assets/trash.svg";
 import "./year.css";
-import VerticallyResponsiveTable from "../../../components/tables/verticallyResponsiveTable/verticallyResponsiveTable";
 
 function Year() {
   const [{years, loadingComponent, newYear, yearOnFocus, newYearEdited, editModalVisible, deleteModalVisible},
@@ -35,13 +36,17 @@ function Year() {
     <div className="years-container">
       <div className="years-header">
         <h2>Anos</h2>
-        <form className="new-year-form" onSubmit={handleSubmit}>
-          <input type="number" required placeholder="Crie um novo ano" value={newYear} maxLength="4"
-                 autoComplete="off" onChange={handleNewYearChange}/>
-          <button id="create-year-btn" type="submit">
-            <span className="button-text">+</span>
-          </button>
-        </form>
+        <SimpleSlidingForm
+          type={"number"}
+          placeholder={"Crie um novo ano"}
+          maxLength={"4"}
+          label={"+"}
+          inputWidth={"111px"}
+          value={newYear}
+          onChange={handleNewYearChange}
+          handleSubmit={handleSubmit}
+          buttonId={"create-year-btn"}
+        />
       </div>
 
       <div className="years-content">
@@ -57,7 +62,7 @@ function Year() {
                 <div className="edit-modal-content">
                   <input type="number" required value={newYearEdited} maxLength="4" autoComplete="off"
                          onChange={handleNewYearEditedChange} className="new-year-edited"/>
-                  <div className="edit-modal-btns">
+                  <div className="modal-btns-box">
                     <SimpleButton onClick={closeEditModal} label={"Cancelar"} backgroundColor={"#e63946"}
                                   color={"#FFFFFF"}/>
                     <SimpleButton onClick={handleEditSubmit} label={"Editar!"} backgroundColor={"#0088a9"}
@@ -71,7 +76,7 @@ function Year() {
               <Modal onClose={closeDeleteModal}>
                 <h4>Deseja mesmo remover o ano {yearOnFocus.yearNumber}?</h4>
                 <h5>Atenção: Todas as despesas relacionadas à este ano também serão removidas!</h5>
-                <div className="edit-modal-btns">
+                <div className="modal-btns-box">
                   <SimpleButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
                                 color={"#FFFFFF"}/>
                   <SimpleButton onClick={handleDeleteYear} label={"Sim!"} backgroundColor={"#0088a9"}

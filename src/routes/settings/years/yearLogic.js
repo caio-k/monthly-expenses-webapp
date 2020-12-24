@@ -77,7 +77,7 @@ const useYear = () => {
 
     if (checkIfNotExitsAYear(newYear)) {
       const createYearBtn = document.getElementById('create-year-btn');
-      createYearBtn.classList.add('create-year-btn-loading');
+      createYearBtn.classList.add('simple-sliding-form-btn-loading');
 
       YearService.createYear(user.id, newYear).then(
         response => {
@@ -89,11 +89,11 @@ const useYear = () => {
           setNewYear("");
           setYears(yearsBackup);
 
-          createYearBtn.classList.remove('create-year-btn-loading');
+          createYearBtn.classList.remove('simple-sliding-form-btn-loading');
         },
         error => {
           handleError(error);
-          createYearBtn.classList.remove('create-year-btn-loading');
+          createYearBtn.classList.remove('simple-sliding-form-btn-loading');
         }
       )
     } else {

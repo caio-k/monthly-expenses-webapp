@@ -15,106 +15,9 @@
     padding: 0 10px;
 }
 
-.new-year-form {
-    background-color: #0088a9;
-    height: 30px;
-    border-radius: 30px;
-    padding: 10px;
-}
-
-.new-year-form:hover > input {
-    width: 111px;
-    padding: 0 6px;
-}
-
-.new-year-form button {
-    color: #FFFFFF;
-    font-size: 35px;
-    float: right;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #0088a9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-}
-
-.new-year-form button:focus {
-    outline: 0 auto -webkit-focus-ring-color;
-    outline-offset: 0;
-}
-
-.new-year-form input {
-    border: none;
-    background: none;
-    outline: none;
-    float: left;
-    padding: 0;
-    color: white;
-    font-size: 14px;
-    transition: 0.4s;
-    line-height: 30px;
-    width: 0;
-}
-
-::-webkit-input-placeholder {
-    color: #FFFFFF;
-    opacity: 0.8;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-    color: #FFFFFF;
-    opacity: 0.8;
-}
-
-::-moz-placeholder { /* Firefox 19+ */
-    color: #FFFFFF;
-    opacity: 0.8;
-}
-
-:-ms-input-placeholder {
-    color: #FFFFFF;
-    opacity: 0.8;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type="number"] {
-    -moz-appearance: textfield;
-}
-
 .table-years-container {
     display: flex;
     justify-content: center;
-}
-
-.new-year-edited {
-    margin: 0 auto;
-    border: none;
-    border-bottom: 2px solid silver;
-    font-size: 16px;
-    padding: 0 5px;
-    height: 40px;
-    background: none;
-    outline: none;
-}
-
-.edit-modal-btns {
-    margin-top: 20px;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
-
-.edit-modal-content {
-    display: flex;
-    flex-direction: column;
 }
 
 .table-years-container p {
@@ -129,8 +32,27 @@ input[type="number"] {
     font-weight: bold;
 }
 
-.create-year-btn-loading {
-    animation: button-loading-spinner 1s ease infinite;
+.new-year-edited {
+    margin: 0 auto;
+    border: none;
+    border-bottom: 2px solid silver;
+    font-size: 16px;
+    padding: 0 5px;
+    height: 40px;
+    background: none;
+    outline: none;
+}
+
+.edit-modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-btns-box {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 @keyframes button-loading-spinner {
