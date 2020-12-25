@@ -1,0 +1,61 @@
+.expense-type-container {
+    width: calc(100% - 40px);
+    max-height: 350px;
+    padding: 2px 20px 20px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, .1);
+    margin-top: 20px;
+}
+
+.expense-type-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid silver;
+    padding: 0 10px;
+}
+
+.expense-type-header div {
+    width: calc(100% - 173px);
+}
+
+.table-expense-types-container {
+    display: flex;
+    justify-content: center;
+}
+
+.table-expense-types-container p {
+    margin-top: 30px;
+}
+
+.create-expense-type-simulation-btn {
+    color: #FFFFFF;
+    background-color: #0088a9;
+    border-radius: 50%;
+    padding: 1px 5px;
+    font-weight: bold;
+}
+
+.expense-type-input-edit {
+    margin: 0 auto;
+    border: none;
+    border-bottom: 2px solid silver;
+    font-size: 16px;
+    padding: 0 5px;
+    height: 40px;
+    background: none;
+    outline: none;
+}
+
+.edit-modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-btns-box {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

@@ -84,3 +84,18 @@ input[type="number"] {
         transform: rotate(1turn);
     }
 }
+
+@media screen and (max-width: 400px) {
+    .simple-sliding-form {
+        height: 20px;
+    }
+
+    .simple-sliding-form button {
+        width: 20px;
+        height: 20px;
+    }
+
+    .simple-sliding-form input {
+        line-height: 20px;
+    }
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import Year from "./years/year";
+import ExpenseType from "./expenseType/expenseType";
 import "./settings.css";
 
 function Settings() {
@@ -7,6 +8,7 @@ function Settings() {
   return (
     <div className="settings-container">
       <Year/>
+      <ExpenseType/>
     </div>
   )
 }
