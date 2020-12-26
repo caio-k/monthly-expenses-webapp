@@ -5,6 +5,7 @@ import Login from "./routes/publicForm/login/login";
 import SignUp from "./routes/publicForm/signup/signup";
 import NotFound from "./components/notfound/notfound";
 import Settings from "./routes/settings/settings";
+import Expenses from "./routes/expenses/expenses";
 
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={props =>
@@ -26,7 +27,7 @@ function Routes() {
           <Route exact path="/login" component={Login}/>
           <Route exact path="/signup" component={SignUp}/>
           <Route exact path="/notfound" component={NotFound}/>
-          <PrivateRoute exact path="/expenses" component={() => <h1>Expenses</h1>}/>
+          <PrivateRoute exact path="/expenses" component={Expenses}/>
           <PrivateRoute exact path="/settings" component={Settings}/>
           <Redirect to="/notfound"/>
         </Switch>

@@ -1,12 +1,12 @@
 import React from "react";
 import Year from "./years/year";
 import ExpenseType from "./expenseType/expenseType";
-import "./settings.css";
+import "../../App.css";
 
 function Settings() {
 
   return (
-    <div className="settings-container">
+    <div className="page-container">
       <Year/>
       <ExpenseType/>
     </div>
