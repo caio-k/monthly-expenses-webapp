@@ -1,12 +1,9 @@
 import {useState} from "react";
 import {useToasts} from "react-toast-notifications";
-import AuthService from "../../../services/auth/AuthService";
 import ExpenseTypeService from "../../../services/settings/ExpenseTypeService";
 
 const useExpenseType = (expenseTypeList) => {
   const [expenseTypes, setExpenseTypes] = useState(expenseTypeList);
-  const [user] = useState(AuthService.getCurrentUser());
-
   const [newExpenseType, setNewExpenseType] = useState("");
   const [expenseTypeOnFocus, setExpenseTypeOnFocus] = useState({});
   const [expenseTypeEdited, setExpenseTypeEdited] = useState("");
@@ -50,7 +47,7 @@ const useExpenseType = (expenseTypeList) => {
       const createYearBtn = document.getElementById('create-expense-type-btn');
       createYearBtn.classList.add('simple-sliding-form-btn-loading');
 
-      ExpenseTypeService.createExpenseType(user.id, newExpenseType).then(
+      ExpenseTypeService.createExpenseType(newExpenseType).then(
         response => {
           handleSuccess("Tipo de despesa \"" + newExpenseType + "\" cadastrado com sucesso!");
 
@@ -76,7 +73,7 @@ const useExpenseType = (expenseTypeList) => {
     if (checkIfExpenseTypeNameExits(expenseTypeEdited)) {
       handleError("Oops, o tipo de despesa \"" + expenseTypeEdited + "\" já está cadastrado!");
     } else {
-      ExpenseTypeService.updateExpenseType(user.id, expenseTypeOnFocus.id, expenseTypeEdited).then(
+      ExpenseTypeService.updateExpenseType(expenseTypeOnFocus.id, expenseTypeEdited).then(
         response => {
           const expenseTypeIndex = getExpenseTypeIndexByExpenseTypeId(expenseTypeOnFocus.id);
           let expenseTypesBackup = [...expenseTypes];
@@ -102,7 +99,7 @@ const useExpenseType = (expenseTypeList) => {
   const handleDelete = (event) => {
     event.preventDefault();
 
-    ExpenseTypeService.deleteExpenseType(user.id, expenseTypeOnFocus.id).then(
+    ExpenseTypeService.deleteExpenseType(expenseTypeOnFocus.id).then(
       () => {
         setExpenseTypes(expenseTypes.filter(element => element.id !== expenseTypeOnFocus.id));
         handleSuccess("Despesa deletada com sucesso!");
