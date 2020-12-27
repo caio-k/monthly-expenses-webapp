@@ -1,6 +1,6 @@
 import {useState} from "react";
-import {useToasts} from 'react-toast-notifications';
 import YearService from "../../../services/settings/YearService";
+import useNotification from "../../../components/notifications/notification";
 
 const useYear = (yearsList) => {
   const [years, setYears] = useState(yearsList);
@@ -9,8 +9,7 @@ const useYear = (yearsList) => {
   const [newYearEdited, setNewYearEdited] = useState("");
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-
-  const {addToast} = useToasts();
+  const [handleSuccessNotification, handleErrorNotification] = useNotification();
 
   const handleNewYearChange = (event) => {
     if (event.target.value.length > event.target.maxLength) {
@@ -53,7 +52,7 @@ const useYear = (yearsList) => {
 
       YearService.createYear(newYear).then(
         response => {
-          handleSuccess("Ano " + newYear + " cadastrado com sucesso!");
+          handleSuccessNotification("Ano " + newYear + " cadastrado com sucesso!");
 
           let yearsBackup = [...years];
           yearsBackup.push(response.data);
@@ -64,7 +63,7 @@ const useYear = (yearsList) => {
           createYearBtn.classList.remove('simple-sliding-form-btn-loading');
         },
         error => {
-          handleError(error);
+          handleErrorNotification(error);
           createYearBtn.classList.remove('simple-sliding-form-btn-loading');
         }
       )
@@ -81,7 +80,7 @@ const useYear = (yearsList) => {
           let yearsBackup = [...years];
           const year = {...years[yearIndex]};
 
-          handleSuccess("Ano " + year.yearNumber + " atualizado para " + newYearEdited + " com sucesso!");
+          handleSuccessNotification("Ano " + year.yearNumber + " atualizado para " + newYearEdited + " com sucesso!");
 
           year["yearNumber"] = response.data.yearNumber;
           yearsBackup[yearIndex] = year;
@@ -92,7 +91,7 @@ const useYear = (yearsList) => {
           closeEditModal();
         },
         error => {
-          handleError(error);
+          handleErrorNotification(error);
         }
       )
     }
@@ -104,34 +103,13 @@ const useYear = (yearsList) => {
     YearService.deleteYear(yearOnFocus.id).then(
       () => {
         setYears(years.filter(year => year.id !== yearOnFocus.id));
-        handleSuccess("Ano deletado com sucesso!");
+        handleSuccessNotification("Ano deletado com sucesso!");
         closeDeleteModal();
       },
       error => {
-        handleError(error);
+        handleErrorNotification(error);
       }
     )
-  }
-
-  const handleSuccess = (message) => {
-    addToast(message, {
-      appearance: 'success',
-      autoDismiss: true,
-    })
-  }
-
-  const handleError = (error) => {
-    const resMessage =
-      (error.response &&
-        error.response.data &&
-        error.response.data.message) ||
-      error.message ||
-      error.toString();
-
-    addToast(resMessage, {
-      appearance: 'error',
-      autoDismiss: true,
-    })
   }
 
   const sortYearsDecreasingly = (newYearsList) => {
@@ -145,10 +123,10 @@ const useYear = (yearsList) => {
     const yearAlreadyExists = years.some(element => element.yearNumber === parseInt(year, 10));
 
     if (year.length < 4 || year.length > 4) {
-      handleError("Oops, o ano deve ser composto por 4 números!");
+      handleErrorNotification("Oops, o ano deve ser composto por 4 números!");
       return false;
     } else if (yearAlreadyExists) {
-      handleError("Oops, o ano " + year + " já está cadastrado!");
+      handleErrorNotification("Oops, o ano " + year + " já está cadastrado!");
       return false;
     } else {
       return true;

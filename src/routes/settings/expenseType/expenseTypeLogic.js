@@ -1,6 +1,6 @@
 import {useState} from "react";
-import {useToasts} from "react-toast-notifications";
 import ExpenseTypeService from "../../../services/settings/ExpenseTypeService";
+import useNotification from "../../../components/notifications/notification";
 
 const useExpenseType = (expenseTypeList) => {
   const [expenseTypes, setExpenseTypes] = useState(expenseTypeList);
@@ -9,8 +9,7 @@ const useExpenseType = (expenseTypeList) => {
   const [expenseTypeEdited, setExpenseTypeEdited] = useState("");
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-
-  const {addToast} = useToasts();
+  const [handleSuccessNotification, handleErrorNotification] = useNotification();
 
   const handleNewExpenseTypeChange = (event) => {
     setNewExpenseType(event.target.value);
@@ -47,7 +46,7 @@ const useExpenseType = (expenseTypeList) => {
 
       ExpenseTypeService.createExpenseType(newExpenseType).then(
         response => {
-          handleSuccess("Tipo de despesa \"" + newExpenseType + "\" cadastrado com sucesso!");
+          handleSuccessNotification("Tipo de despesa \"" + newExpenseType + "\" cadastrado com sucesso!");
 
           let expenseTypesBackup = [...expenseTypes];
           expenseTypesBackup.push(response.data);
@@ -58,7 +57,7 @@ const useExpenseType = (expenseTypeList) => {
           createYearBtn.classList.remove('simple-sliding-form-btn-loading');
         },
         error => {
-          handleError(error);
+          handleErrorNotification(error);
           createYearBtn.classList.remove('simple-sliding-form-btn-loading');
         }
       )
@@ -75,7 +74,7 @@ const useExpenseType = (expenseTypeList) => {
           let expenseTypesBackup = [...expenseTypes];
           const expenseType = {...expenseTypes[expenseTypeIndex]};
 
-          handleSuccess("Despesa \"" + expenseType.name + "\" atualizada para \"" + expenseTypeEdited + "\" com sucesso!");
+          handleSuccessNotification("Despesa \"" + expenseType.name + "\" atualizada para \"" + expenseTypeEdited + "\" com sucesso!");
 
           expenseType["name"] = response.data.name;
           expenseTypesBackup[expenseTypeIndex] = expenseType;
@@ -86,7 +85,7 @@ const useExpenseType = (expenseTypeList) => {
           closeEditModal();
         },
         error => {
-          handleError(error);
+          handleErrorNotification(error);
         }
       )
     }
@@ -98,41 +97,20 @@ const useExpenseType = (expenseTypeList) => {
     ExpenseTypeService.deleteExpenseType(expenseTypeOnFocus.id).then(
       () => {
         setExpenseTypes(expenseTypes.filter(element => element.id !== expenseTypeOnFocus.id));
-        handleSuccess("Despesa deletada com sucesso!");
+        handleSuccessNotification("Despesa deletada com sucesso!");
         closeDeleteModal();
       },
       error => {
-        handleError(error);
+        handleErrorNotification(error);
       }
     )
-  }
-
-  const handleSuccess = (message) => {
-    addToast(message, {
-      appearance: 'success',
-      autoDismiss: true,
-    })
-  }
-
-  const handleError = (error) => {
-    const resMessage =
-      (error.response &&
-        error.response.data &&
-        error.response.data.message) ||
-      error.message ||
-      error.toString();
-
-    addToast(resMessage, {
-      appearance: 'error',
-      autoDismiss: true,
-    })
   }
 
   const isAValidExpenseTypeName = (expenseTypeName) => {
     const alreadyExitsExpenseTypeName = expenseTypes.some(element => element.name === expenseTypeName);
 
     if (alreadyExitsExpenseTypeName) {
-      handleError("Oops, o tipo de despesa \"" + expenseTypeName + "\" já está cadastrado!");
+      handleErrorNotification("Oops, o tipo de despesa \"" + expenseTypeName + "\" já está cadastrado!");
       return false;
     } else {
       return true;
