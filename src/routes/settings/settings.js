@@ -4,6 +4,7 @@ import ExpenseType from "./expenseType/expenseType";
 import useSettings from "./settingsLogic";
 import RoundLoading from "../../components/loading/roundLoading/roundLoading";
 import "../../App.css";
+import ErrorMessageContainer from "../../components/error/errorMessageContainer";
 
 function Settings() {
 
@@ -17,7 +18,7 @@ function Settings() {
       )}
 
       {!loadingComponent && loadingError && (
-        <p>Ocorreu um erro ao carregar os dados!</p>
+        <ErrorMessageContainer message={"Ocorreu um erro ao carregar a página!"}/>
       )}
 
       {!loadingComponent && !loadingError && (
