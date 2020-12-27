@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom
 import AuthService from "./services/auth/AuthService";
 import Login from "./routes/publicForm/login/login";
 import SignUp from "./routes/publicForm/signup/signup";
-import NotFound from "./components/notfound/notfound";
+import NotFound from "./routes/notfound/notfound";
 import Settings from "./routes/settings/settings";
 import Expenses from "./routes/expenses/expenses";
 
