@@ -50,7 +50,7 @@ const useYear = (yearsList) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (checkIfNotExitsAYear(newYear)) {
+    if (isAValidYear(newYear)) {
       const createYearBtn = document.getElementById('create-year-btn');
       createYearBtn.classList.add('simple-sliding-form-btn-loading');
 
@@ -71,19 +71,13 @@ const useYear = (yearsList) => {
           createYearBtn.classList.remove('simple-sliding-form-btn-loading');
         }
       )
-    } else {
-      handleError("Oops, o ano " + newYear + " já está cadastrado!");
     }
   }
 
   const handleEditSubmit = (event) => {
     event.preventDefault();
 
-    if (newYearEdited.length < 4 || newYearEdited.length > 4) {
-      handleError("Oops, o ano deve ser composto por 4 números!");
-    } else if (!checkIfNotExitsAYear(newYearEdited)) {
-      handleError("Oops, o ano " + newYearEdited + " já está cadastrado!");
-    } else {
+    if (isAValidYear(newYearEdited)) {
       YearService.updateYear(user.id, yearOnFocus.id, newYearEdited).then(
         response => {
           const yearIndex = getYearIndexByYearId(yearOnFocus.id);
@@ -150,8 +144,18 @@ const useYear = (yearsList) => {
     return newYearsList;
   }
 
-  const checkIfNotExitsAYear = (year) => {
-    return !years.some(element => element.yearNumber === parseInt(year, 10));
+  const isAValidYear = (year) => {
+    const yearAlreadyExists = years.some(element => element.yearNumber === parseInt(year, 10));
+
+    if (year.length < 4 || year.length > 4) {
+      handleError("Oops, o ano deve ser composto por 4 números!");
+      return false;
+    } else if (yearAlreadyExists) {
+      handleError("Oops, o ano " + year + " já está cadastrado!");
+      return false;
+    } else {
+      return true;
+    }
   }
 
   const getYearIndexByYearId = (yearId) => {
