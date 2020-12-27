@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import SettingsService from "../../services/settings/SettingsService";
-import AuthService from "../../services/auth/AuthService";
 
 const useSettings = () => {
   const [years, setYears] = useState([]);
@@ -9,7 +8,7 @@ const useSettings = () => {
   const [loadingError, setLoadingError] = useState(false);
 
   useEffect(() => {
-    SettingsService.getInitializationData(AuthService.getCurrentUser().id).then(
+    SettingsService.getInitializationData().then(
       response => {
         setYears(response.data.years);
         setExpenseTypes(response.data.expenseTypes);
