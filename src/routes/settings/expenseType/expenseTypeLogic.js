@@ -41,9 +41,7 @@ const useExpenseType = (expenseTypeList) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (checkIfExpenseTypeNameExits(newExpenseType)) {
-      handleError("Oops, o tipo de despesa \"" + newExpenseType + "\" já está cadastrado!");
-    } else {
+    if (isAValidExpenseTypeName(newExpenseType)) {
       const createYearBtn = document.getElementById('create-expense-type-btn');
       createYearBtn.classList.add('simple-sliding-form-btn-loading');
 
@@ -70,9 +68,7 @@ const useExpenseType = (expenseTypeList) => {
   const handleEditSubmit = (event) => {
     event.preventDefault();
 
-    if (checkIfExpenseTypeNameExits(expenseTypeEdited)) {
-      handleError("Oops, o tipo de despesa \"" + expenseTypeEdited + "\" já está cadastrado!");
-    } else {
+    if (isAValidExpenseTypeName(expenseTypeEdited)) {
       ExpenseTypeService.updateExpenseType(expenseTypeOnFocus.id, expenseTypeEdited).then(
         response => {
           const expenseTypeIndex = getExpenseTypeIndexByExpenseTypeId(expenseTypeOnFocus.id);
@@ -132,8 +128,15 @@ const useExpenseType = (expenseTypeList) => {
     })
   }
 
-  const checkIfExpenseTypeNameExits = (expenseTypeName) => {
-    return expenseTypes.some(element => element.name === expenseTypeName);
+  const isAValidExpenseTypeName = (expenseTypeName) => {
+    const alreadyExitsExpenseTypeName = expenseTypes.some(element => element.name === expenseTypeName);
+
+    if (alreadyExitsExpenseTypeName) {
+      handleError("Oops, o tipo de despesa \"" + expenseTypeName + "\" já está cadastrado!");
+      return false;
+    } else {
+      return true;
+    }
   }
 
   const sortExpenseTypes = (expenseTypeList) => {
