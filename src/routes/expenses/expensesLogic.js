@@ -6,6 +6,8 @@ const useExpenses = () => {
   const [expenseTypes, setExpenseTypes] = useState([]);
   const [initialMoneys, setInitialMoneys] = useState([]);
   const [expenses, setExpenses] = useState([]);
+  const [selectedYearId, setSelectedYearId] = useState([]);
+  const [selectedMonth, setSelectedMonth] = useState([]);
   const [loadingComponent, setLoadingComponent] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
 
@@ -16,6 +18,8 @@ const useExpenses = () => {
         setExpenseTypes(response.data.expenseTypes);
         setInitialMoneys(response.data.initialMoneys);
         setExpenses(response.data.expenseInfos);
+        setSelectedYearId(response.data.selectedYearId);
+        setSelectedMonth(response.data.selectedMonth);
         setLoadingComponent(false);
         setLoadingError(false);
       },
@@ -26,7 +30,22 @@ const useExpenses = () => {
     )
   }, [])
 
-  return [{years, expenseTypes, initialMoneys, expenses, loadingComponent, loadingError}];
+  const handleSubmit = (e, year, month) => {
+    e.preventDefault();
+    console.log(year);
+    console.log(month);
+  }
+
+  return [{
+    years,
+    expenseTypes,
+    initialMoneys,
+    expenses,
+    selectedYearId,
+    selectedMonth,
+    loadingComponent,
+    loadingError
+  }, handleSubmit];
 }
 
 export default useExpenses;
