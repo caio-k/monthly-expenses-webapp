@@ -1,12 +1,11 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useToasts} from 'react-toast-notifications';
 import YearService from "../../../services/settings/YearService";
 import AuthService from "../../../services/auth/AuthService";
 
-const useYear = () => {
-  const [years, setYears] = useState([]);
+const useYear = (yearsList) => {
+  const [years, setYears] = useState(yearsList);
   const [user] = useState(AuthService.getCurrentUser());
-  const [loadingComponent, setLoadingComponent] = useState(true);
 
   const [newYear, setNewYear] = useState("");
   const [yearOnFocus, setYearOnFocus] = useState({});
@@ -15,29 +14,6 @@ const useYear = () => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   const {addToast} = useToasts();
-
-  useEffect(() => {
-    YearService.getYear(AuthService.getCurrentUser().id).then(
-      response => {
-        setYears(response.data);
-        setLoadingComponent(false);
-      },
-      error => {
-        setLoadingComponent(false);
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        addToast(resMessage, {
-          appearance: 'error',
-          autoDismiss: true,
-        })
-      }
-    )
-  }, [addToast]);
 
   const handleNewYearChange = (event) => {
     if (event.target.value.length > event.target.maxLength) {
@@ -70,7 +46,6 @@ const useYear = () => {
   const closeDeleteModal = () => {
     setDeleteModalVisible(false);
   }
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -183,7 +158,7 @@ const useYear = () => {
     return years.findIndex(element => element.id === yearId);
   }
 
-  return [{years, loadingComponent, newYear, yearOnFocus, newYearEdited, editModalVisible, deleteModalVisible},
+  return [{years, newYear, yearOnFocus, newYearEdited, editModalVisible, deleteModalVisible},
     handleSubmit, handleEditSubmit, handleDeleteYear, handleNewYearChange, handleNewYearEditedChange,
     openEditModal, closeEditModal, openDeleteModal, closeDeleteModal];
 }

@@ -3,13 +3,6 @@ import ServerApi from "../api/ServerApi";
 const API_PATH = "/api/year/";
 
 class YearService {
-  getYear(userId) {
-    return ServerApi.get(API_PATH + 'get', {
-      params: {
-        userId
-      }
-    });
-  }
 
   createYear(userId, yearNumber) {
     return ServerApi.post(API_PATH + 'create', {

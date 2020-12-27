@@ -1,12 +1,11 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useToasts} from "react-toast-notifications";
 import AuthService from "../../../services/auth/AuthService";
 import ExpenseTypeService from "../../../services/settings/ExpenseTypeService";
 
-const useExpenseType = () => {
-  const [expenseTypes, setExpenseTypes] = useState([]);
+const useExpenseType = (expenseTypeList) => {
+  const [expenseTypes, setExpenseTypes] = useState(expenseTypeList);
   const [user] = useState(AuthService.getCurrentUser());
-  const [loadingComponent, setLoadingComponent] = useState(true);
 
   const [newExpenseType, setNewExpenseType] = useState("");
   const [expenseTypeOnFocus, setExpenseTypeOnFocus] = useState({});
@@ -15,30 +14,6 @@ const useExpenseType = () => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   const {addToast} = useToasts();
-
-  useEffect(() => {
-    ExpenseTypeService.getExpenseTypes(AuthService.getCurrentUser().id).then(
-      response => {
-        const expenseTypesBackup = sortExpenseTypes(response.data);
-        setExpenseTypes(expenseTypesBackup);
-        setLoadingComponent(false);
-      },
-      error => {
-        setLoadingComponent(false);
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        addToast(resMessage, {
-          appearance: 'error',
-          autoDismiss: true,
-        })
-      }
-    )
-  }, [addToast]);
 
   const handleNewExpenseTypeChange = (event) => {
     setNewExpenseType(event.target.value);
@@ -175,15 +150,7 @@ const useExpenseType = () => {
     return expenseTypes.findIndex(element => element.id === id);
   }
 
-  return [{
-    expenseTypes,
-    loadingComponent,
-    newExpenseType,
-    expenseTypeOnFocus,
-    expenseTypeEdited,
-    editModalVisible,
-    deleteModalVisible
-  },
+  return [{expenseTypes, newExpenseType, expenseTypeOnFocus, expenseTypeEdited, editModalVisible, deleteModalVisible},
     handleSubmit, handleEditSubmit, handleDelete, handleNewExpenseTypeChange, handleNewExpenseTypeEditedChange,
     openEditModal, closeEditModal, openDeleteModal, closeDeleteModal];
 }
