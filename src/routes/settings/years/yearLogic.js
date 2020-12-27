@@ -1,12 +1,9 @@
 import {useState} from "react";
 import {useToasts} from 'react-toast-notifications';
 import YearService from "../../../services/settings/YearService";
-import AuthService from "../../../services/auth/AuthService";
 
 const useYear = (yearsList) => {
   const [years, setYears] = useState(yearsList);
-  const [user] = useState(AuthService.getCurrentUser());
-
   const [newYear, setNewYear] = useState("");
   const [yearOnFocus, setYearOnFocus] = useState({});
   const [newYearEdited, setNewYearEdited] = useState("");
@@ -54,7 +51,7 @@ const useYear = (yearsList) => {
       const createYearBtn = document.getElementById('create-year-btn');
       createYearBtn.classList.add('simple-sliding-form-btn-loading');
 
-      YearService.createYear(user.id, newYear).then(
+      YearService.createYear(newYear).then(
         response => {
           handleSuccess("Ano " + newYear + " cadastrado com sucesso!");
 
@@ -78,7 +75,7 @@ const useYear = (yearsList) => {
     event.preventDefault();
 
     if (isAValidYear(newYearEdited)) {
-      YearService.updateYear(user.id, yearOnFocus.id, newYearEdited).then(
+      YearService.updateYear(yearOnFocus.id, newYearEdited).then(
         response => {
           const yearIndex = getYearIndexByYearId(yearOnFocus.id);
           let yearsBackup = [...years];
@@ -104,7 +101,7 @@ const useYear = (yearsList) => {
   const handleDeleteYear = (event) => {
     event.preventDefault();
 
-    YearService.deleteYear(user.id, yearOnFocus.id).then(
+    YearService.deleteYear(yearOnFocus.id).then(
       () => {
         setYears(years.filter(year => year.id !== yearOnFocus.id));
         handleSuccess("Ano deletado com sucesso!");

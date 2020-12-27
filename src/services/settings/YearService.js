@@ -1,28 +1,29 @@
 import ServerApi from "../api/ServerApi";
+import AuthService from "../auth/AuthService";
 
 const API_PATH = "/api/year/";
 
 class YearService {
 
-  createYear(userId, yearNumber) {
+  createYear(yearNumber) {
     return ServerApi.post(API_PATH + 'create', {
-      userId,
+      userId: AuthService.getCurrentUser().id,
       yearNumber
     });
   }
 
-  updateYear(userId, yearId, yearNumber) {
+  updateYear(yearId, yearNumber) {
     return ServerApi.put(API_PATH + 'update', {
-      userId,
+      userId: AuthService.getCurrentUser().id,
       yearId,
       yearNumber
     });
   }
 
-  deleteYear(userId, yearId) {
+  deleteYear(yearId) {
     return ServerApi.delete(API_PATH + 'delete', {
       params: {
-        userId,
+        userId: AuthService.getCurrentUser().id,
         yearId
       }
     });
