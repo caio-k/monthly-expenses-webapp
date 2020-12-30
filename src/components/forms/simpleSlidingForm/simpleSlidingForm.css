@@ -41,22 +41,22 @@
     width: 0;
 }
 
-::-webkit-input-placeholder {
+.simple-sliding-form input::-webkit-input-placeholder {
     color: #FFFFFF;
     opacity: 0.8;
 }
 
-:-moz-placeholder { /* Firefox 18- */
+.simple-sliding-form input:-moz-placeholder { /* Firefox 18- */
     color: #FFFFFF;
     opacity: 0.8;
 }
 
-::-moz-placeholder { /* Firefox 19+ */
+.simple-sliding-form input::-moz-placeholder { /* Firefox 19+ */
     color: #FFFFFF;
     opacity: 0.8;
 }
 
-:-ms-input-placeholder {
+.simple-sliding-form input:-ms-input-placeholder {
     color: #FFFFFF;
     opacity: 0.8;
 }
