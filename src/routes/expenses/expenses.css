@@ -1,33 +1,39 @@
+.expenses-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .half-box {
-    width: calc(50% - 40px);
+    width: calc(50% - 60px);
     height: 250px;
     padding: 2px 20px 20px;
     border-radius: 5px;
     background-color: #FFFFFF;
     box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, .1);
+    margin: 10px;
 }
 
 .half-box-header {
     border-bottom: 1px solid silver;
     padding: 0 10px;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .half-box-content h4 {
     text-align: center;
 }
 
-@media screen and (max-width: 835px) {
+@media screen and (max-width: 880px) {
     .half-box {
+        height: fit-content;
         width: calc(100% - 40px);
     }
 }
 
-@media screen and (max-width: 430px) {
-    .half-box {
-        height: 300px;
-    }
-
+@media screen and (max-width: 450px) {
     .half-box-content {
         flex-direction: column;
         align-items: flex-start;

@@ -1,0 +1,125 @@
+.initial-money-register p {
+    color: #000000;
+    padding: 0 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.initial-money-register div:first-child {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.initial-money-register > form > div:first-child {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.initial-money-register > form label {
+    background-color: #DEE2E6;
+    line-height: 30px;
+    padding: 2px 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: #6c757d;
+}
+
+.initial-money-register input {
+    width: 100%;
+    max-width: 300px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 15px;
+    padding: 2px 10px;
+    background-color: #eee;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+.button-session-initial-money {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button-session-initial-money button {
+    height: 40px;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: #0088a9;
+    font-size: 14px;
+    color: #e9f4fb;
+    cursor: pointer;
+    outline: none;
+    margin-top: 10px;
+}
+
+.initial-money-value-session {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.initial-money-value-session > img {
+    margin-right: 15px;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.initial-money-value-session span {
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.initial-money-modal h3, h4 {
+    margin: 0;
+}
+
+.initial-money-modal h4 {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.initial-money-modal > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.initial-money-update-field {
+    display: flex;
+    align-items: center;
+    height: 46px;
+}
+
+.initial-money-modal label {
+    height: calc(100% - 12px);
+    padding: 12px 14px 0;
+    background-color: #DEE2E6;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: #6c757d;
+}
+
+.initial-money-modal input {
+    height: 46px;
+    line-height: 3;
+    width: 118px;
+    border-radius: 0 5px 5px 0;
+    font-size: 15px;
+    border: 0;
+    outline: 0;
+    background-color: #eee;
+    padding: 0 .5em;
+}
+
+.button-session-initial-money-modal {
+    width: 100%;
+}

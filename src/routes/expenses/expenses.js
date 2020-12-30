@@ -9,8 +9,10 @@ import "../../App.css";
 import "./expenses.css";
 
 function Expenses() {
-  const [{years, expenseTypes, initialMoneys, expenses, selectedYearId, selectedMonth, loadingComponent, loadingError},
-    handleSubmit] = useExpenses();
+  const [{
+    months, years, expenseTypes, initialMoneyOnFocus, expensesOnFocus, selectedMonthYear, loadingComponent,
+    loadingError
+  }, handleSubmit, addInitialMoneyOnListAndFocus, updateInitialMoneyOnListAndFocus] = useExpenses();
 
   return (
     <div className="page-container">
@@ -23,12 +25,24 @@ function Expenses() {
       )}
 
       {!loadingComponent && !loadingError && (
-        <>
-          <MonthYear years={years} handleSubmit={handleSubmit} selectedYearId={selectedYearId}
-                     selectedMonth={selectedMonth}/>
-          <InitialMoney initialMoneys={initialMoneys}/>
-          <ExpensesInfo expenseTypes={expenseTypes} expenses={expenses}/>
-        </>
+        <div className="expenses-box">
+          {years.length === 0 && (
+            <ErrorMessageContainer
+              message={"Você ainda não cadastrou nenhum ano. Vá até a aba de \"Configurações\" e cadastre agora mesmo!"}/>
+          )}
+
+          {years.length > 0 && (
+            <>
+              <MonthYear months={months} years={years} handleSubmit={handleSubmit}
+                         selectedMonthYear={selectedMonthYear}/>
+              <InitialMoney initialMoneyOnFocus={initialMoneyOnFocus} selectedMonthYear={selectedMonthYear}
+                            addInitialMoneyOnListAndFocus={addInitialMoneyOnListAndFocus}
+                            updateInitialMoneyOnListAndFocus={updateInitialMoneyOnListAndFocus}/>
+              <ExpensesInfo expenseTypes={expenseTypes} expensesOnFocus={expensesOnFocus}
+                            selectedMonthYear={selectedMonthYear}/>
+            </>
+          )}
+        </div>
       )}
     </div>
   )

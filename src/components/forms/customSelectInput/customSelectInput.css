@@ -1,0 +1,45 @@
+.custom-select-input select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #eee;
+    flex: 1;
+    padding: 0 .5em;
+    color: #000000;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.custom-select-input select::-ms-expand {
+    display: none;
+}
+
+.custom-select-input {
+    position: relative;
+    display: flex;
+    height: 3em;
+    line-height: 3;
+    background: #eee;
+    overflow: hidden;
+    border-radius: .25em;
+}
+
+.custom-select-input::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #DEE2E6;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+}
+
+.custom-select-input:hover::after {
+    color: #0088a9;
+}

@@ -1,11 +1,9 @@
 import {useState} from "react";
 
-const useMonthYear = (yearsList, firstSelectedYearId, firstSelectedMonth) => {
+const useMonthYear = (yearsList, selectedMonthYear, months) => {
   const [years] = useState(yearsList);
-  const [months] = useState(["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]);
-  const [selectedYear, setSelectedYear] = useState(firstSelectedYearId);
-  const [selectedMonth, setSelectedMonth] = useState(months[Math.max(firstSelectedMonth, 0)]);
+  const [selectedYear, setSelectedYear] = useState(selectedMonthYear.yearNumber);
+  const [selectedMonth, setSelectedMonth] = useState(months[Math.max(selectedMonthYear.monthNumber, 0)]);
 
   const handleSelectedYear = (event) => {
     setSelectedYear(event.target.value);
@@ -15,7 +13,7 @@ const useMonthYear = (yearsList, firstSelectedYearId, firstSelectedMonth) => {
     setSelectedMonth(event.target.value);
   }
 
-  return [{years, selectedYear, selectedMonth, months}, handleSelectedYear, handleSelectedMonth];
+  return [{years, selectedYear, selectedMonth}, handleSelectedYear, handleSelectedMonth];
 }
 
 export default useMonthYear;

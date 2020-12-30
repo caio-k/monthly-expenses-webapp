@@ -1,64 +1,9 @@
-.half-box-content p {
-    text-align: center;
-    background-color: red;
-    padding: 10px 5px;
-    color: #FFFFFF;
-    border-radius: 5px;
-}
-
 .custom-select-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: 10px;
-}
-
-.custom-select-input select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    outline: 0;
-    box-shadow: none;
-    border: 0 !important;
-    background: #DEE2E6;
-    flex: 1;
-    padding: 0 .5em;
-    color: #000000;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.custom-select-input select::-ms-expand {
-    display: none;
-}
-
-.custom-select-input {
-    position: relative;
-    display: flex;
-    width: 220px;
-    height: 3em;
-    line-height: 3;
-    background: #DEE2E6;
-    overflow: hidden;
-    border-radius: .25em;
-}
-
-.custom-select-input::after {
-    content: '\25BC';
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0 1em;
-    background: #CED4DA;
-    cursor: pointer;
-    pointer-events: none;
-    transition: .25s all ease;
-}
-
-.custom-select-input:hover::after {
-    color: #0088a9;
 }
 
 .button-session-month-year {
@@ -76,11 +21,4 @@
     cursor: pointer;
     outline: none;
     margin-top: 10px;
-}
-
-@media screen and (max-width: 430px) {
-    .custom-select-input {
-        width: 100%;
-        margin-top: 10px;
-    }
 }
