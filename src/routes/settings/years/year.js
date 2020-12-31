@@ -40,7 +40,7 @@ function Year(props) {
           placeholder={"Crie um novo ano"}
           maxLength={"4"}
           label={"+"}
-          inputWidth={"111px"}
+          inputWidth={"115px"}
           value={newYear}
           onChange={handleNewYearChange}
           handleSubmit={handleSubmit}

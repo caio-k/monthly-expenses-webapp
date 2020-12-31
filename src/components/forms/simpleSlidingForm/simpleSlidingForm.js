@@ -1,15 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import "./simpleSlidingForm.css";
 
 function SimpleSlidingForm(props) {
-  const [hover, setHover] = useState(false);
-
-  const toggleHover = () => {
-    setHover(!hover);
-  }
-
   return (
-    <form className="simple-sliding-form" onSubmit={props.handleSubmit} onMouseEnter={toggleHover} onMouseLeave={toggleHover}>
+    <form className="simple-sliding-form" onSubmit={props.handleSubmit}>
       <input
         type={props.type}
         placeholder={props.placeholder}
@@ -17,7 +11,7 @@ function SimpleSlidingForm(props) {
         autoComplete="off"
         value={props.value}
         onChange={props.onChange}
-        style={{width: hover ? props.inputWidth : 0}}
+        style={{width: props.inputWidth}}
         required />
 
       <button id={props.buttonId} type="submit">

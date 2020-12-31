@@ -42,7 +42,7 @@ function ExpenseType(props) {
           placeholder={"Tipo de despesa"}
           maxLength={"255"}
           label={"+"}
-          inputWidth={"111px"}
+          inputWidth={"115px"}
           value={newExpenseType}
           onChange={handleNewExpenseTypeChange}
           handleSubmit={handleSubmit}
