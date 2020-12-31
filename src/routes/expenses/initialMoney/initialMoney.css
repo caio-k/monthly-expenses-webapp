@@ -86,7 +86,7 @@
     margin-bottom: 15px;
 }
 
-.initial-money-modal > div {
+.initial-money-modal > form > div {
     display: flex;
     justify-content: space-between;
     align-items: center;

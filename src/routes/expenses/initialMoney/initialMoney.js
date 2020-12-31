@@ -23,41 +23,44 @@ const InitialMoney = (props) => {
             <h4>{props.selectedMonthYear.monthName}/{props.selectedMonthYear.yearNumber} - <strong>R${props.initialMoneyOnFocus.initialMoney}</strong>
             </h4>
 
-            <div>
-              <span>Selecione a operação:</span>
-              <CustomSelectInput value={operation} onChange={handleOperationChange} width={180}>
-                <option value={1}>Adicionar</option>
-                <option value={-1}>Remover</option>
-              </CustomSelectInput>
-            </div>
-
-            <div>
-              <span>Valor:</span>
-              <div className="initial-money-update-field">
-                <label>R$</label>
-                <input
-                  placeholder={0}
-                  type="number"
-                  autoComplete="off"
-                  value={initialMoneyValueChange}
-                  onChange={handleInitialMoneyValueChangeChange}
-                />
+            <form onSubmit={handleUpdate}>
+              <div>
+                <span>Selecione a operação:</span>
+                <CustomSelectInput value={operation} onChange={handleOperationChange} width={180}>
+                  <option value={1}>Adicionar</option>
+                  <option value={-1}>Remover</option>
+                </CustomSelectInput>
               </div>
-            </div>
-            <div className="button-session-initial-money-modal">
-              {(isNaN(initialMoneyValueEdited) || initialMoneyValueChange.length < 1) && (
-                <p>Digite um valor válido!</p>
-              )}
 
-              {(!isNaN(initialMoneyValueEdited) && initialMoneyValueChange.length > 0) && (
-                <>
-                  <span>O valor inicial será atualizado para <strong>R${initialMoneyValueEdited}</strong></span>
-                  <div className={"button-session-initial-money"} style={{marginLeft: "10px"}}>
-                    <button onClick={handleUpdate} style={{marginTop: "0"}}>Atualizar</button>
-                  </div>
-                </>
-              )}
-            </div>
+              <div>
+                <span>Valor:</span>
+                <div className="initial-money-update-field">
+                  <label>R$</label>
+                  <input
+                    placeholder={0}
+                    type="number"
+                    required
+                    autoComplete="off"
+                    value={initialMoneyValueChange}
+                    onChange={handleInitialMoneyValueChangeChange}
+                  />
+                </div>
+              </div>
+              <div className="button-session-initial-money-modal">
+                {(isNaN(initialMoneyValueEdited) || initialMoneyValueChange.length < 1) && (
+                  <p>Digite um valor válido!</p>
+                )}
+
+                {(!isNaN(initialMoneyValueEdited) && initialMoneyValueChange.length > 0) && (
+                  <>
+                    <span>O valor inicial será atualizado para <strong>R${initialMoneyValueEdited}</strong></span>
+                    <div className={"button-session-initial-money"} style={{marginLeft: "10px"}}>
+                      <button type="submit" style={{marginTop: "0"}}>Atualizar</button>
+                    </div>
+                  </>
+                )}
+              </div>
+            </form>
           </div>
         </Modal>
       )}
