@@ -29,7 +29,7 @@ const useExpenses = () => {
         setMonthYearsSought([selectedMonthYear]);
         setExpenseTypes(response.data.expenseTypes);
         setInitialMoneyOnFocus(response.data.initialMoney);
-        setInitialMoneyList([response.data.initialMoney]);
+        setInitialMoneyList(response.data.initialMoney === null ? [] : [response.data.initialMoney]);
         setExpensesOnFocus(response.data.expenseInfos);
         setAllExpenses(response.data.expenseInfos);
         setSelectedMonthYear(selectedMonthYear);
