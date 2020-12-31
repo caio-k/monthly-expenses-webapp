@@ -123,3 +123,7 @@
 .button-session-initial-money-modal {
     width: 100%;
 }
+
+.button-session-initial-money-modal p {
+    margin: 10px auto 0;
+}

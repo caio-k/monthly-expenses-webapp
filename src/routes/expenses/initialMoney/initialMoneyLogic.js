@@ -51,6 +51,7 @@ const useInitialMoney = (initialMoneyOnFocus, selectedMonthYear, addInitialMoney
   const closeEditModal = () => {
     setEditModalVisible(false);
     setInitialMoneyValueChange('');
+    setOperation(1);
     setInitialMoneyValueEdited(initialMoneyOnFocus.initialMoney);
   }
 

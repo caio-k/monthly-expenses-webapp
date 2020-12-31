@@ -51,7 +51,7 @@ const InitialMoney = (props) => {
 
               {(!isNaN(initialMoneyValueEdited) && initialMoneyValueChange.length > 0) && (
                 <>
-                  <p>O valor inicial será atualizado para <strong>R${initialMoneyValueEdited}</strong></p>
+                  <span>O valor inicial será atualizado para <strong>R${initialMoneyValueEdited}</strong></span>
                   <div className={"button-session-initial-money"} style={{marginLeft: "10px"}}>
                     <button onClick={handleUpdate} style={{marginTop: "0"}}>Atualizar</button>
                   </div>
