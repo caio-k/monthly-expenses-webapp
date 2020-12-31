@@ -21,12 +21,12 @@ function MonthYear(props) {
   }
 
   return (
-    <div className="half-box">
-      <div className="half-box-header">
+    <div className="expenses-box-session half-box">
+      <div className="expenses-box-session-header">
         <h3>Escolha de Mês e Ano</h3>
       </div>
 
-      <div className="half-box-content">
+      <div className="expenses-box-session-content">
         <form onSubmit={(e) => props.handleSubmit(e, selectedYear, props.months.indexOf(selectedMonth), selectedMonth)}>
           <div className="custom-select-content">
             <label>Selecione o ano:</label>

@@ -3,9 +3,7 @@
     flex-wrap: wrap;
 }
 
-.half-box {
-    width: calc(50% - 60px);
-    height: 250px;
+.expenses-box-session {
     padding: 2px 20px 20px;
     border-radius: 5px;
     background-color: #FFFFFF;
@@ -13,7 +11,17 @@
     margin: 10px;
 }
 
-.half-box-header {
+.half-box {
+    width: calc(50% - 60px);
+    height: 250px;
+}
+
+.full-box {
+    width: calc(100% - 60px);
+    height: fit-content;
+}
+
+.expenses-box-session-header {
     border-bottom: 1px solid silver;
     padding: 0 10px;
     margin-bottom: 20px;
@@ -22,7 +30,7 @@
     align-items: center;
 }
 
-.half-box-content h4 {
+.expenses-box-session-content h4 {
     text-align: center;
 }
 

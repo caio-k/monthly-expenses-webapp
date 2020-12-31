@@ -14,7 +14,7 @@ const InitialMoney = (props) => {
     = useInitialMoney(props.initialMoneyOnFocus, props.selectedMonthYear, props.addInitialMoneyOnListAndFocus, props.updateInitialMoneyOnListAndFocus);
 
   return (
-    <div className="half-box">
+    <div className="expenses-box-session half-box">
 
       {editModalVisible && (
         <Modal onClose={closeEditModal}>
@@ -65,12 +65,12 @@ const InitialMoney = (props) => {
         </Modal>
       )}
 
-      <div className="half-box-header">
+      <div className="expenses-box-session-header">
         <h3>Dinheiro Inicial</h3>
         <h4>{props.selectedMonthYear.monthName}/{props.selectedMonthYear.yearNumber}</h4>
       </div>
 
-      <div className="half-box-content">
+      <div className="expenses-box-session-content">
 
         {!props.initialMoneyOnFocus && (
           <div className="initial-money-register">
