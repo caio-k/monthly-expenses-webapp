@@ -69,7 +69,7 @@ const useExpenses = () => {
       ExpensesService.getByMonthAndYear(actualMonthYear.monthNumber, actualMonthYear.yearNumber).then(
         response => {
           addInitialMoneyOnListAndFocus(response.data.initialMoney);
-          addExpensesOnListAndFocus(response.data.expenseInfos);
+          addExpensesListOnListAndFocus(response.data.expenseInfos);
         },
         error => {
           handleErrorNotification(error);
@@ -115,9 +115,19 @@ const useExpenses = () => {
     setInitialMoneyOnFocus(initialMoneyIndex < 0 ? null : initialMoneyList[initialMoneyIndex]);
   }
 
-  const addExpensesOnListAndFocus = (expenses) => {
+  const addExpensesListOnListAndFocus = (expenses) => {
     setExpensesOnFocus(expenses);
-    setAllExpenses(list => [...list, expenses]);
+
+    let allExpensesCopy = [...allExpenses];
+    allExpensesCopy.push(expenses);
+    setAllExpenses(allExpensesCopy);
+  }
+
+  const addExpenseObjectOnListAndFocus = (expenseObject) => {
+    if (expenseObject) {
+      setExpensesOnFocus(list => [...list, expenseObject]);
+      setAllExpenses(list => [...list, expenseObject]);
+    }
   }
 
   const setNewExpensesOnFocus = (month, year) => {
@@ -137,7 +147,7 @@ const useExpenses = () => {
     selectedMonthYear,
     loadingComponent,
     loadingError
-  }, handleSubmit, addInitialMoneyOnListAndFocus, updateInitialMoneyOnListAndFocus];
+  }, handleSubmit, addInitialMoneyOnListAndFocus, updateInitialMoneyOnListAndFocus, addExpenseObjectOnListAndFocus];
 }
 
 export default useExpenses;

@@ -42,13 +42,22 @@
 }
 
 @media screen and (max-width: 450px) {
+    .expenses-box-session-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 10px;
+    }
+
+    .expenses-box-session-header h3 {
+        margin: 10px 0;
+    }
+
+    .expenses-box-session-header h4 {
+        margin-bottom: 10px;
+    }
+
     .half-box-content {
         flex-direction: column;
         align-items: flex-start;
-    }
-
-    .custom-select-input {
-        width: 100%;
-        margin-top: 10px;
     }
 }

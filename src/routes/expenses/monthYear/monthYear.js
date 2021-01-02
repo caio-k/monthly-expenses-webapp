@@ -30,16 +30,20 @@ function MonthYear(props) {
         <form onSubmit={(e) => props.handleSubmit(e, selectedYear, props.months.indexOf(selectedMonth), selectedMonth)}>
           <div className="custom-select-content">
             <label>Selecione o ano:</label>
-            <CustomSelectInput onChange={handleSelectedYear} value={selectedYear}>
-              {years.map(renderYearOption)}
-            </CustomSelectInput>
+            <div>
+              <CustomSelectInput onChange={handleSelectedYear} value={selectedYear}>
+                {years.map(renderYearOption)}
+              </CustomSelectInput>
+            </div>
           </div>
 
           <div className="custom-select-content">
             <label>Selecione o mês:</label>
-            <CustomSelectInput onChange={handleSelectedMonth} value={selectedMonth}>
-              {props.months.map(renderMonthOption)}
-            </CustomSelectInput>
+            <div>
+              <CustomSelectInput onChange={handleSelectedMonth} value={selectedMonth}>
+                {props.months.map(renderMonthOption)}
+              </CustomSelectInput>
+            </div>
           </div>
 
           <div className="button-session-month-year">

@@ -93,6 +93,10 @@
     margin-bottom: 15px;
 }
 
+.initial-money-modal > form > div:first-child > div {
+    min-width: 182px;
+}
+
 .initial-money-update-field {
     display: flex;
     align-items: center;
