@@ -16,6 +16,7 @@ class ExpensesInfoService {
 
   updateExpenseInfo(expenseId, name, price, paid, expenseTypeId) {
     return ServerApi.put(API_PATH + 'update', {
+      expenseId,
       name,
       price,
       paid,
