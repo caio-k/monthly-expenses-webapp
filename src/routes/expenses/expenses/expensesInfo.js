@@ -3,6 +3,9 @@ import useExpensesInfo from "./expensesInfoLogic";
 import ErrorMessageContainer from "../../../components/error/errorMessageContainer";
 import Modal from "../../../components/modal/modal";
 import CustomSelectInput from "../../../components/forms/customSelectInput/customSelectInput";
+import FullyResponsiveTable from "../../../components/tables/fullyResponsiveTable/fullyResponsiveTable";
+import editIcon from "../../../assets/edit.svg";
+import trashIcon from "../../../assets/trash.svg";
 import "./expensesInfo.css";
 
 function ExpensesInfo(props) {
@@ -22,6 +25,36 @@ function ExpensesInfo(props) {
     return (
       <option key={expenseType.id} value={expenseType.id}>{expenseType.name}</option>
     )
+  }
+
+  function renderExpenseInfoRow(expenseInfo) {
+    return (
+      <tr key={expenseInfo.id}>
+        <td className="fixed-cells-width-80">
+          <input type="checkbox" checked={expenseInfo.paid}/>
+        </td>
+        <td>
+          <span>{expenseInfo.name}</span>
+        </td>
+        <td>
+          <span>{findExpenseTypeById(expenseInfo.expenseTypeId)}</span>
+        </td>
+        <td>
+          <span>{expenseInfo.price}</span>
+        </td>
+        <td className="fixed-cells-width-80">
+          <img src={editIcon} alt="Editar"/>
+        </td>
+        <td className="fixed-cells-width-80">
+          <img src={trashIcon} alt="Editar"/>
+        </td>
+      </tr>
+    )
+  }
+
+  function findExpenseTypeById(id) {
+    const expenseType = props.expenseTypes.find(element => element.id === id);
+    return expenseType ? expenseType.name : "";
   }
 
   return (
@@ -96,6 +129,29 @@ function ExpensesInfo(props) {
         {props.expenseTypes.length === 0 && (
           <ErrorMessageContainer
             message={"Você ainda não cadastrou nenhum tipo de despesa. Vá até a aba de \"Configurações\" e cadastre agora mesmo!"}/>
+        )}
+
+        {props.expenseTypes.length > 0 && props.expensesOnFocus.length === 0 && (
+          <ErrorMessageContainer
+            message={"Você ainda não cadastrou nenhuma despesa. Clique no botão + acima e cadastre agora mesmo!"}/>
+        )}
+
+        {props.expenseTypes.length > 0 && props.expensesOnFocus.length > 0 && (
+          <FullyResponsiveTable>
+            <thead>
+            <tr>
+              <th className="fixed-cells-width-80">Pago</th>
+              <th>Nome</th>
+              <th>Tipo</th>
+              <th>Valor (R$)</th>
+              <th className="fixed-cells-width-80">Editar</th>
+              <th className="fixed-cells-width-80">Remover</th>
+            </tr>
+            </thead>
+            <tbody>
+            {props.expensesOnFocus.map(renderExpenseInfoRow)}
+            </tbody>
+          </FullyResponsiveTable>
         )}
       </div>
     </div>
