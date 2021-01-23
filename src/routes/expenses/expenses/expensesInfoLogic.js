@@ -2,7 +2,7 @@ import {useState} from "react";
 import ExpensesInfoService from "../../../services/expenses/ExpensesInfoService";
 import useNotification from "../../../components/notifications/notification";
 
-const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addExpenseObjectOnListAndFocus) => {
+const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addExpenseObjectOnListAndFocus, updateExpenseInfo) => {
 
   const [createModalVisible, setCreateModalVisible] = useState(false);
 
@@ -66,6 +66,19 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
       )
   }
 
+  const handleCheckboxPaidChange = (event, expenseInfo) => {
+    event.preventDefault();
+
+    ExpensesInfoService.updateExpenseInfo(expenseInfo.id, expenseInfo.name, expenseInfo.price, !expenseInfo.paid, expenseInfo.expenseTypeId).then(
+      response => {
+        updateExpenseInfo(response.data);
+      },
+      error => {
+        handleErrorNotification(error);
+      }
+    )
+  }
+
   return [{
     createModalVisible,
     createExpenseInfoName,
@@ -74,7 +87,7 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
     createExpenseInfoExpenseTypeId
   },
     openCreateModal, closeCreateModal, handleCreateExpenseInfoNameChange, handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange,
-    handleCreateExpenseInfoExpenseTypeIdChange, handleCreate];
+    handleCreateExpenseInfoExpenseTypeIdChange, handleCreate, handleCheckboxPaidChange];
 }
 
 export default useExpensesInfo;

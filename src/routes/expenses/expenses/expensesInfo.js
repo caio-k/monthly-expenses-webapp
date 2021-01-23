@@ -18,8 +18,8 @@ function ExpensesInfo(props) {
     createExpenseInfoExpenseTypeId
   },
     openCreateModal, closeCreateModal, handleCreateExpenseInfoNameChange, handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange,
-    handleCreateExpenseInfoExpenseTypeIdChange, handleCreate]
-    = useExpensesInfo(props.expensesOnFocus, props.selectedMonthYear, props.expenseTypes, props.addExpenseObjectOnListAndFocus);
+    handleCreateExpenseInfoExpenseTypeIdChange, handleCreate, handleCheckboxPaidChange]
+    = useExpensesInfo(props.expensesOnFocus, props.selectedMonthYear, props.expenseTypes, props.addExpenseObjectOnListAndFocus, props.updateExpenseInfo);
 
   function renderExpenseTypeOption(expenseType) {
     return (
@@ -31,7 +31,7 @@ function ExpensesInfo(props) {
     return (
       <tr key={expenseInfo.id}>
         <td className="fixed-cells-width-80">
-          <input type="checkbox" checked={expenseInfo.paid}/>
+          <input type="checkbox" checked={expenseInfo.paid} onChange={e => handleCheckboxPaidChange(e, expenseInfo)}/>
         </td>
         <td>
           <span>{expenseInfo.name}</span>

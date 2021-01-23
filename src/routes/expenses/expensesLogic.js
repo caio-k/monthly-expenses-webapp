@@ -138,6 +138,28 @@ const useExpenses = () => {
     setExpensesOnFocus(expensesSelected);
   }
 
+  const updateExpenseInfo = (expenseInfo) => {
+    const expenseInfoIndex = allExpenses.findIndex(element => element.id === expenseInfo.id);
+
+    if (expenseInfoIndex >= 0) {
+      const expenseInfoIndexOnFocus = expensesOnFocus.findIndex(element => element.id === expenseInfo.id);
+      const oldExpenseInfo = allExpenses[expenseInfoIndex];
+
+      oldExpenseInfo.name = expenseInfo.name;
+      oldExpenseInfo.paid = expenseInfo.paid;
+      oldExpenseInfo.price = expenseInfo.price;
+      oldExpenseInfo.expenseTypeId = expenseInfo.expenseTypeId;
+
+      let newAllExpensesList = [...allExpenses];
+      newAllExpensesList[expenseInfoIndex] = oldExpenseInfo;
+      setAllExpenses(newAllExpensesList);
+
+      let newExpensesOnFocusList = [...expensesOnFocus];
+      newExpensesOnFocusList[expenseInfoIndexOnFocus] = oldExpenseInfo;
+      setExpensesOnFocus(newExpensesOnFocusList);
+    }
+  }
+
   return [{
     months,
     years,
@@ -147,7 +169,7 @@ const useExpenses = () => {
     selectedMonthYear,
     loadingComponent,
     loadingError
-  }, handleSubmit, addInitialMoneyOnListAndFocus, updateInitialMoneyOnListAndFocus, addExpenseObjectOnListAndFocus];
+  }, handleSubmit, addInitialMoneyOnListAndFocus, updateInitialMoneyOnListAndFocus, addExpenseObjectOnListAndFocus, updateExpenseInfo];
 }
 
 export default useExpenses;
