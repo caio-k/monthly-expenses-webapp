@@ -94,6 +94,10 @@
     width: 80px;
 }
 
+.fixed-cells-width-150 {
+    width: 150px;
+}
+
 @media screen and (max-width: 450px) {
     .expenses-info-title-header {
         width: 100%;

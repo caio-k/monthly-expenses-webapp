@@ -39,7 +39,7 @@ function ExpensesInfo(props) {
         <td>
           <span>{findExpenseTypeById(expenseInfo.expenseTypeId)}</span>
         </td>
-        <td>
+        <td className="fixed-cells-width-150">
           <span>{expenseInfo.price}</span>
         </td>
         <td className="fixed-cells-width-80">
@@ -143,7 +143,7 @@ function ExpensesInfo(props) {
               <th className="fixed-cells-width-80">Pago</th>
               <th>Nome</th>
               <th>Tipo</th>
-              <th>Valor (R$)</th>
+              <th className="fixed-cells-width-150">Valor (R$)</th>
               <th className="fixed-cells-width-80">Editar</th>
               <th className="fixed-cells-width-80">Remover</th>
             </tr>
