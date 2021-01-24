@@ -32,7 +32,7 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
     setCreateExpenseInfoName('');
     setCreateExpenseInfoPrice('');
     setCreateExpenseInfoPaid("true");
-    setCreateExpenseInfoExpenseTypeId('');
+    setCreateExpenseInfoExpenseTypeId(expenseTypes.length > 0 ? expenseTypes[0].id : null);
   }
 
   const openUpdateModal = (expenseInfoObject) => {
