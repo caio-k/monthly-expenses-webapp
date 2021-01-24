@@ -12,6 +12,13 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
   const [createExpenseInfoExpenseTypeId, setCreateExpenseInfoExpenseTypeId] = useState(expenseTypes.length > 0 ? expenseTypes[0].id : null);
 
   const [expenseInfoOnFocus, setExpenseInfoOnFocus] = useState({});
+
+  const [updateModalVisible, setUpdateModalVisible] = useState(false);
+  const [updateExpenseInfoName, setUpdateExpenseInfoName] = useState('');
+  const [updateExpenseInfoPrice, setUpdateExpenseInfoPrice] = useState('');
+  const [updateExpenseInfoPaid, setUpdateExpenseInfoPaid] = useState("true");
+  const [updateExpenseInfoExpenseTypeId, setUpdateExpenseInfoExpenseTypeId] = useState(expenseTypes.length > 0 ? expenseTypes[0].id : null);
+
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
   const [handleSuccessNotification, handleErrorNotification] = useNotification();
@@ -26,6 +33,19 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
     setCreateExpenseInfoPrice('');
     setCreateExpenseInfoPaid("true");
     setCreateExpenseInfoExpenseTypeId('');
+  }
+
+  const openUpdateModal = (expenseInfoObject) => {
+    setUpdateExpenseInfoName(expenseInfoObject.name);
+    setUpdateExpenseInfoPrice(expenseInfoObject.price);
+    setUpdateExpenseInfoPaid(expenseInfoObject.paid);
+    setUpdateExpenseInfoExpenseTypeId(expenseInfoObject.expenseTypeId);
+    setExpenseInfoOnFocus(expenseInfoObject);
+    setUpdateModalVisible(true);
+  }
+
+  const closeUpdateModal = () => {
+    setUpdateModalVisible(false);
   }
 
   const openDeleteModal = (expenseInfoObject) => {
@@ -56,6 +76,26 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
 
   const handleCreateExpenseInfoExpenseTypeIdChange = (event) => {
     setCreateExpenseInfoExpenseTypeId(event.target.value);
+  }
+
+  const handleUpdateExpenseInfoNameChange = (event) => {
+    setUpdateExpenseInfoName(event.target.value);
+  }
+
+  const handleUpdateExpenseInfoPriceChange = (event) => {
+    const value = event.target.value;
+    const parts = value.split('.');
+    if (!(parts && parts[1] && parts[1].length > 2)) {
+      setUpdateExpenseInfoPrice(value);
+    }
+  }
+
+  const handleUpdateExpenseInfoPaidChange = () => {
+    setUpdateExpenseInfoPaid(!updateExpenseInfoPaid);
+  }
+
+  const handleUpdateExpenseInfoExpenseTypeIdChange = (event) => {
+    setUpdateExpenseInfoExpenseTypeId(event.target.value);
   }
 
   const handleCreate = (event) => {
@@ -93,6 +133,27 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
     )
   }
 
+  const handleExpenseInfoUpdate = (event) => {
+    event.preventDefault();
+
+    ExpensesInfoService.updateExpenseInfo(
+      expenseInfoOnFocus.id,
+      updateExpenseInfoName,
+      updateExpenseInfoPrice,
+      updateExpenseInfoPaid,
+      updateExpenseInfoExpenseTypeId
+    ).then(
+      response => {
+        updateExpenseInfo(response.data);
+        handleSuccessNotification("Despesa alterada com sucesso!");
+        closeUpdateModal();
+      },
+      error => {
+        handleErrorNotification(error);
+      }
+    )
+  }
+
   const handleExpenseInfoDelete = (event) => {
     event.preventDefault();
 
@@ -115,11 +176,18 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
     createExpenseInfoPaid,
     createExpenseInfoExpenseTypeId,
     expenseInfoOnFocus,
+    updateModalVisible,
+    updateExpenseInfoName,
+    updateExpenseInfoPrice,
+    updateExpenseInfoPaid,
+    updateExpenseInfoExpenseTypeId,
     deleteModalVisible
   },
-    openCreateModal, closeCreateModal, openDeleteModal, closeDeleteModal, handleCreateExpenseInfoNameChange,
-    handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange, handleCreateExpenseInfoExpenseTypeIdChange,
-    handleCreate, handleExpenseInfoDelete, handleCheckboxPaidChange];
+    openCreateModal, closeCreateModal, openUpdateModal, closeUpdateModal, openDeleteModal, closeDeleteModal,
+    handleCreateExpenseInfoNameChange, handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange,
+    handleCreateExpenseInfoExpenseTypeIdChange, handleUpdateExpenseInfoNameChange, handleUpdateExpenseInfoPriceChange,
+    handleUpdateExpenseInfoPaidChange, handleUpdateExpenseInfoExpenseTypeIdChange, handleCreate, handleExpenseInfoUpdate,
+    handleExpenseInfoDelete, handleCheckboxPaidChange];
 }
 
 export default useExpensesInfo;

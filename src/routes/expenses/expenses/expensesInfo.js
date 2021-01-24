@@ -18,11 +18,18 @@ function ExpensesInfo(props) {
     createExpenseInfoPaid,
     createExpenseInfoExpenseTypeId,
     expenseInfoOnFocus,
+    updateModalVisible,
+    updateExpenseInfoName,
+    updateExpenseInfoPrice,
+    updateExpenseInfoPaid,
+    updateExpenseInfoExpenseTypeId,
     deleteModalVisible
   },
-    openCreateModal, closeCreateModal, openDeleteModal, closeDeleteModal, handleCreateExpenseInfoNameChange,
-    handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange, handleCreateExpenseInfoExpenseTypeIdChange,
-    handleCreate, handleExpenseInfoDelete, handleCheckboxPaidChange]
+    openCreateModal, closeCreateModal, openUpdateModal, closeUpdateModal, openDeleteModal, closeDeleteModal,
+    handleCreateExpenseInfoNameChange, handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange,
+    handleCreateExpenseInfoExpenseTypeIdChange, handleUpdateExpenseInfoNameChange, handleUpdateExpenseInfoPriceChange,
+    handleUpdateExpenseInfoPaidChange, handleUpdateExpenseInfoExpenseTypeIdChange, handleCreate, handleExpenseInfoUpdate,
+    handleExpenseInfoDelete, handleCheckboxPaidChange]
     = useExpensesInfo(props.expensesOnFocus, props.selectedMonthYear, props.expenseTypes, props.addExpenseObjectOnListAndFocus,
     props.updateExpenseInfo, props.deleteExpenseInfo);
 
@@ -47,7 +54,7 @@ function ExpensesInfo(props) {
         <td className="fixed-cells-width-150">
           <span>{expenseInfo.price}</span>
         </td>
-        <td className="fixed-cells-width-80">
+        <td className="fixed-cells-width-80" onClick={() => openUpdateModal(expenseInfo)}>
           <img src={editIcon} alt="Editar"/>
         </td>
         <td className="fixed-cells-width-80" onClick={() => openDeleteModal(expenseInfo)}>
@@ -143,6 +150,58 @@ function ExpensesInfo(props) {
 
         {props.expensesOnFocus.length > 0 && (
           <>
+            {updateModalVisible && (
+              <Modal onClose={closeUpdateModal}>
+                <div>
+                  <h3>Alterar Despesa</h3>
+
+                  <form onSubmit={handleExpenseInfoUpdate} className="expense-info-modal">
+                    <div>
+                      <div>
+                        <label>Nome</label>
+                        <div>
+                          <input required maxLength={255} autoComplete="off" type="text"
+                                 value={updateExpenseInfoName} onChange={handleUpdateExpenseInfoNameChange}/>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label>Preço (R$)</label>
+                        <div>
+                          <input required autoComplete="off" type="number" value={updateExpenseInfoPrice}
+                                 onChange={handleUpdateExpenseInfoPriceChange}/>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div>
+                        <label>Tipo</label>
+                        <div>
+                          <CustomSelectInput value={updateExpenseInfoExpenseTypeId}
+                                             onChange={handleUpdateExpenseInfoExpenseTypeIdChange}>
+                            {props.expenseTypes.map(renderExpenseTypeOption)}
+                          </CustomSelectInput>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label>Pago</label>
+                        <div>
+                          <input type="checkbox" checked={updateExpenseInfoPaid}
+                                 onChange={handleUpdateExpenseInfoPaidChange}/>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <button type="submit">Alterar</button>
+                    </div>
+                  </form>
+                </div>
+              </Modal>
+            )}
+
             {deleteModalVisible && (
               <Modal onClose={closeDeleteModal}>
                 <h3>Remover Despesa</h3>
