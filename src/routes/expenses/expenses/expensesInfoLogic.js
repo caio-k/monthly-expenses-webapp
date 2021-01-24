@@ -70,8 +70,8 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
     }
   }
 
-  const handleCreateExpenseInfoPaidChange = (event) => {
-    setCreateExpenseInfoPaid(event.target.value);
+  const handleCreateExpenseInfoPaidChange = () => {
+    setCreateExpenseInfoPaid(createExpenseInfoPaid === "true" ? "false" : "true");
   }
 
   const handleCreateExpenseInfoExpenseTypeIdChange = (event) => {

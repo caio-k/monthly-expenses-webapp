@@ -98,43 +98,42 @@ function ExpensesInfo(props) {
                   <h3>Cadastrar Despesa</h3>
                   <h4>{props.selectedMonthYear.monthName}/{props.selectedMonthYear.yearNumber}</h4>
 
-                  <form onSubmit={handleCreate}>
+                  <form onSubmit={handleCreate} className="expense-info-modal">
                     <div>
-                      <label>Nome:</label>
-                      <input required maxLength={255} placeholder="Nome da despesa" autoComplete="off"
-                             type="text" value={createExpenseInfoName} onChange={handleCreateExpenseInfoNameChange}/>
-                    </div>
+                      <div>
+                        <label>Nome</label>
+                        <div>
+                          <input required maxLength={255} autoComplete="off" type="text"
+                                 value={createExpenseInfoName} onChange={handleCreateExpenseInfoNameChange}/>
+                        </div>
+                      </div>
 
-                    <div>
-                      <label>Preço:</label>
-                      <input required placeholder="Preço da despesa" autoComplete="off" type="number"
-                             value={createExpenseInfoPrice} onChange={handleCreateExpenseInfoPriceChange}
-                      />
-                    </div>
-
-                    <div>
-                      <label>Pago:</label>
-                      <div className="expenses-info-paid-field">
-                        <label>
-                          <input type="radio" value={"true"} checked={createExpenseInfoPaid === "true"}
-                                 onChange={handleCreateExpenseInfoPaidChange}/>
-                          <span>Sim</span>
-                        </label>
-                        <label>
-                          <input type="radio" value={"false"} checked={createExpenseInfoPaid === "false"}
-                                 onChange={handleCreateExpenseInfoPaidChange}/>
-                          <span>Não</span>
-                        </label>
+                      <div>
+                        <label>Preço (R$)</label>
+                        <div>
+                          <input required autoComplete="off" type="number" value={createExpenseInfoPrice}
+                                 onChange={handleCreateExpenseInfoPriceChange}/>
+                        </div>
                       </div>
                     </div>
 
                     <div>
-                      <label>Tipo:</label>
-                      <div className="expenses-info-expense-type-field">
-                        <CustomSelectInput value={createExpenseInfoExpenseTypeId}
-                                           onChange={handleCreateExpenseInfoExpenseTypeIdChange}>
-                          {props.expenseTypes.map(renderExpenseTypeOption)}
-                        </CustomSelectInput>
+                      <div>
+                        <label>Tipo</label>
+                        <div>
+                          <CustomSelectInput value={createExpenseInfoExpenseTypeId}
+                                             onChange={handleCreateExpenseInfoExpenseTypeIdChange}>
+                            {props.expenseTypes.map(renderExpenseTypeOption)}
+                          </CustomSelectInput>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label>Pago</label>
+                        <div>
+                          <input type="checkbox" checked={createExpenseInfoPaid === "true"}
+                                 onChange={handleCreateExpenseInfoPaidChange}/>
+                        </div>
                       </div>
                     </div>
 
