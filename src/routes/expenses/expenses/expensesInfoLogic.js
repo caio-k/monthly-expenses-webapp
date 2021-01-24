@@ -2,14 +2,18 @@ import {useState} from "react";
 import ExpensesInfoService from "../../../services/expenses/ExpensesInfoService";
 import useNotification from "../../../components/notifications/notification";
 
-const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addExpenseObjectOnListAndFocus, updateExpenseInfo) => {
+const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addExpenseObjectOnListAndFocus,
+                         updateExpenseInfo, deleteExpenseInfo) => {
 
   const [createModalVisible, setCreateModalVisible] = useState(false);
-
   const [createExpenseInfoName, setCreateExpenseInfoName] = useState('');
   const [createExpenseInfoPrice, setCreateExpenseInfoPrice] = useState('');
   const [createExpenseInfoPaid, setCreateExpenseInfoPaid] = useState("true");
   const [createExpenseInfoExpenseTypeId, setCreateExpenseInfoExpenseTypeId] = useState(expenseTypes.length > 0 ? expenseTypes[0].id : null);
+
+  const [expenseInfoOnFocus, setExpenseInfoOnFocus] = useState({});
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+
   const [handleSuccessNotification, handleErrorNotification] = useNotification();
 
   const openCreateModal = () => {
@@ -22,6 +26,16 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
     setCreateExpenseInfoPrice('');
     setCreateExpenseInfoPaid("true");
     setCreateExpenseInfoExpenseTypeId('');
+  }
+
+  const openDeleteModal = (expenseInfoObject) => {
+    setExpenseInfoOnFocus(expenseInfoObject);
+    setDeleteModalVisible(true);
+  }
+
+  const closeDeleteModal = () => {
+    setExpenseInfoOnFocus({});
+    setDeleteModalVisible(false);
   }
 
   const handleCreateExpenseInfoNameChange = (event) => {
@@ -79,15 +93,33 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
     )
   }
 
+  const handleExpenseInfoDelete = (event) => {
+    event.preventDefault();
+
+    ExpensesInfoService.deleteExpenseInfo(expenseInfoOnFocus.id).then(
+      () => {
+        deleteExpenseInfo(expenseInfoOnFocus);
+        handleSuccessNotification("Despesa removida com sucesso!");
+        closeDeleteModal();
+      },
+      error => {
+        handleErrorNotification(error);
+      }
+    )
+  }
+
   return [{
     createModalVisible,
     createExpenseInfoName,
     createExpenseInfoPrice,
     createExpenseInfoPaid,
-    createExpenseInfoExpenseTypeId
+    createExpenseInfoExpenseTypeId,
+    expenseInfoOnFocus,
+    deleteModalVisible
   },
-    openCreateModal, closeCreateModal, handleCreateExpenseInfoNameChange, handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange,
-    handleCreateExpenseInfoExpenseTypeIdChange, handleCreate, handleCheckboxPaidChange];
+    openCreateModal, closeCreateModal, openDeleteModal, closeDeleteModal, handleCreateExpenseInfoNameChange,
+    handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange, handleCreateExpenseInfoExpenseTypeIdChange,
+    handleCreate, handleExpenseInfoDelete, handleCheckboxPaidChange];
 }
 
 export default useExpensesInfo;

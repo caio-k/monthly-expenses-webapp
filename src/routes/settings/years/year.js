@@ -55,7 +55,7 @@ function Year(props) {
             <div className="edit-modal-content">
               <input type="number" required value={newYearEdited} maxLength="4" autoComplete="off"
                      onChange={handleNewYearEditedChange} className="new-year-edited"/>
-              <div className="modal-btns-box">
+              <div className="modal-btns-box-1">
                 <SimpleButton onClick={closeEditModal} label={"Cancelar"} backgroundColor={"#e63946"}
                               color={"#FFFFFF"}/>
                 <SimpleButton onClick={handleEditSubmit} label={"Editar!"} backgroundColor={"#0088a9"}
@@ -69,7 +69,7 @@ function Year(props) {
           <Modal onClose={closeDeleteModal}>
             <h4>Deseja mesmo remover o ano {yearOnFocus.yearNumber}?</h4>
             <h5>Atenção: Todas as despesas relacionadas à este ano também serão removidas!</h5>
-            <div className="modal-btns-box">
+            <div className="modal-btns-box-1">
               <SimpleButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
                             color={"#FFFFFF"}/>
               <SimpleButton onClick={handleDeleteYear} label={"Sim!"} backgroundColor={"#0088a9"}

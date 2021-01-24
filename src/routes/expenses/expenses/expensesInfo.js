@@ -4,6 +4,7 @@ import ErrorMessageContainer from "../../../components/error/errorMessageContain
 import Modal from "../../../components/modal/modal";
 import CustomSelectInput from "../../../components/forms/customSelectInput/customSelectInput";
 import FullyResponsiveTable from "../../../components/tables/fullyResponsiveTable/fullyResponsiveTable";
+import SimpleButton from "../../../components/buttons/simpleButton";
 import editIcon from "../../../assets/edit.svg";
 import trashIcon from "../../../assets/trash.svg";
 import "./expensesInfo.css";
@@ -15,11 +16,15 @@ function ExpensesInfo(props) {
     createExpenseInfoName,
     createExpenseInfoPrice,
     createExpenseInfoPaid,
-    createExpenseInfoExpenseTypeId
+    createExpenseInfoExpenseTypeId,
+    expenseInfoOnFocus,
+    deleteModalVisible
   },
-    openCreateModal, closeCreateModal, handleCreateExpenseInfoNameChange, handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange,
-    handleCreateExpenseInfoExpenseTypeIdChange, handleCreate, handleCheckboxPaidChange]
-    = useExpensesInfo(props.expensesOnFocus, props.selectedMonthYear, props.expenseTypes, props.addExpenseObjectOnListAndFocus, props.updateExpenseInfo);
+    openCreateModal, closeCreateModal, openDeleteModal, closeDeleteModal, handleCreateExpenseInfoNameChange,
+    handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange, handleCreateExpenseInfoExpenseTypeIdChange,
+    handleCreate, handleExpenseInfoDelete, handleCheckboxPaidChange]
+    = useExpensesInfo(props.expensesOnFocus, props.selectedMonthYear, props.expenseTypes, props.addExpenseObjectOnListAndFocus,
+    props.updateExpenseInfo, props.deleteExpenseInfo);
 
   function renderExpenseTypeOption(expenseType) {
     return (
@@ -45,7 +50,7 @@ function ExpensesInfo(props) {
         <td className="fixed-cells-width-80">
           <img src={editIcon} alt="Editar"/>
         </td>
-        <td className="fixed-cells-width-80">
+        <td className="fixed-cells-width-80" onClick={() => openDeleteModal(expenseInfo)}>
           <img src={trashIcon} alt="Editar"/>
         </td>
       </tr>
@@ -68,6 +73,16 @@ function ExpensesInfo(props) {
       </div>
 
       <div>
+        {props.expenseTypes.length === 0 && (
+          <ErrorMessageContainer
+            message={"Você ainda não cadastrou nenhum tipo de despesa. Vá até a aba de \"Configurações\" e cadastre agora mesmo!"}/>
+        )}
+
+        {props.expenseTypes.length > 0 && props.expensesOnFocus.length === 0 && (
+          <ErrorMessageContainer
+            message={"Você ainda não cadastrou nenhuma despesa. Clique no botão \"+\" acima e cadastre agora mesmo!"}/>
+        )}
+
         {props.expenseTypes.length > 0 && (
           <>
             {createModalVisible && (
@@ -126,32 +141,37 @@ function ExpensesInfo(props) {
           </>
         )}
 
-        {props.expenseTypes.length === 0 && (
-          <ErrorMessageContainer
-            message={"Você ainda não cadastrou nenhum tipo de despesa. Vá até a aba de \"Configurações\" e cadastre agora mesmo!"}/>
-        )}
+        {props.expensesOnFocus.length > 0 && (
+          <>
+            {deleteModalVisible && (
+              <Modal onClose={closeDeleteModal}>
+                <h3>Remover Despesa</h3>
+                <h4>Deseja mesmo remover a despesa "{expenseInfoOnFocus.name}"?</h4>
+                <div className="modal-btns-box-1">
+                  <SimpleButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
+                                color={"#FFFFFF"}/>
+                  <SimpleButton onClick={handleExpenseInfoDelete} label={"Sim!"} backgroundColor={"#0088a9"}
+                                color={"#FFFFFF"}/>
+                </div>
+              </Modal>
+            )}
 
-        {props.expenseTypes.length > 0 && props.expensesOnFocus.length === 0 && (
-          <ErrorMessageContainer
-            message={"Você ainda não cadastrou nenhuma despesa. Clique no botão + acima e cadastre agora mesmo!"}/>
-        )}
-
-        {props.expenseTypes.length > 0 && props.expensesOnFocus.length > 0 && (
-          <FullyResponsiveTable>
-            <thead>
-            <tr>
-              <th className="fixed-cells-width-80">Pago</th>
-              <th>Nome</th>
-              <th>Tipo</th>
-              <th className="fixed-cells-width-150">Preço (R$)</th>
-              <th className="fixed-cells-width-80">Editar</th>
-              <th className="fixed-cells-width-80">Remover</th>
-            </tr>
-            </thead>
-            <tbody>
-            {props.expensesOnFocus.map(renderExpenseInfoRow)}
-            </tbody>
-          </FullyResponsiveTable>
+            <FullyResponsiveTable>
+              <thead>
+              <tr>
+                <th className="fixed-cells-width-80">Pago</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th className="fixed-cells-width-150">Preço (R$)</th>
+                <th className="fixed-cells-width-80">Editar</th>
+                <th className="fixed-cells-width-80">Remover</th>
+              </tr>
+              </thead>
+              <tbody>
+              {props.expensesOnFocus.map(renderExpenseInfoRow)}
+              </tbody>
+            </FullyResponsiveTable>
+          </>
         )}
       </div>
     </div>

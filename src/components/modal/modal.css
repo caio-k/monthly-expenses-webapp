@@ -54,3 +54,10 @@
 .custom-modal-content {
     margin-top: 40px;
 }
+
+.modal-btns-box-1 {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

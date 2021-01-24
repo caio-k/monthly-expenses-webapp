@@ -57,7 +57,7 @@ function ExpenseType(props) {
             <div className="edit-modal-content">
               <input type="text" required value={expenseTypeEdited} maxLength="255" autoComplete="off"
                      onChange={handleNewExpenseTypeEditedChange} className="expense-type-input-edit"/>
-              <div className="modal-btns-box">
+              <div className="modal-btns-box-1">
                 <SimpleButton onClick={closeEditModal} label={"Cancelar"} backgroundColor={"#e63946"}
                               color={"#FFFFFF"}/>
                 <SimpleButton onClick={handleEditSubmit} label={"Editar!"} backgroundColor={"#0088a9"}
@@ -72,7 +72,7 @@ function ExpenseType(props) {
             <h4>Deseja mesmo remover o tipo de despesa "{expenseTypeOnFocus.name}" ?</h4>
             <h5>Atenção: Todas as despesas relacionadas à este tipo de despesa também serão removidas!</h5>
 
-            <div className="modal-btns-box">
+            <div className="modal-btns-box-1">
               <SimpleButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
                             color={"#FFFFFF"}/>
               <SimpleButton onClick={handleDelete} label={"Sim!"} backgroundColor={"#0088a9"}

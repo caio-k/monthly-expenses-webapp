@@ -12,7 +12,8 @@ function Expenses() {
   const [{
     months, years, expenseTypes, initialMoneyOnFocus, expensesOnFocus, selectedMonthYear, loadingComponent,
     loadingError
-  }, handleSubmit, addInitialMoneyOnListAndFocus, updateInitialMoneyOnListAndFocus, addExpenseObjectOnListAndFocus, updateExpenseInfo] = useExpenses();
+  }, handleSubmit, addInitialMoneyOnListAndFocus, updateInitialMoneyOnListAndFocus, addExpenseObjectOnListAndFocus,
+    updateExpenseInfo, deleteExpenseInfo] = useExpenses();
 
   return (
     <div className="page-container">
@@ -41,7 +42,7 @@ function Expenses() {
               <ExpensesInfo expenseTypes={expenseTypes} expensesOnFocus={expensesOnFocus}
                             selectedMonthYear={selectedMonthYear}
                             addExpenseObjectOnListAndFocus={addExpenseObjectOnListAndFocus}
-                            updateExpenseInfo={updateExpenseInfo}/>
+                            updateExpenseInfo={updateExpenseInfo} deleteExpenseInfo={deleteExpenseInfo}/>
             </>
           )}
         </div>

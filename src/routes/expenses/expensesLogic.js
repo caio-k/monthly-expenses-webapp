@@ -160,6 +160,11 @@ const useExpenses = () => {
     }
   }
 
+  const deleteExpenseInfo = (expenseInfo) => {
+    setAllExpenses(allExpenses.filter(element => element.id !== expenseInfo.id));
+    setExpensesOnFocus(expensesOnFocus.filter(element => element.id !== expenseInfo.id));
+  }
+
   return [{
     months,
     years,
@@ -169,7 +174,8 @@ const useExpenses = () => {
     selectedMonthYear,
     loadingComponent,
     loadingError
-  }, handleSubmit, addInitialMoneyOnListAndFocus, updateInitialMoneyOnListAndFocus, addExpenseObjectOnListAndFocus, updateExpenseInfo];
+  }, handleSubmit, addInitialMoneyOnListAndFocus, updateInitialMoneyOnListAndFocus, addExpenseObjectOnListAndFocus,
+    updateExpenseInfo, deleteExpenseInfo];
 }
 
 export default useExpenses;
