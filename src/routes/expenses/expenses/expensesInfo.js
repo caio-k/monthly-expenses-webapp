@@ -74,7 +74,9 @@ function ExpensesInfo(props) {
       <div className="expenses-box-session-header">
         <div className="expenses-info-title-header">
           <h3>Despesas</h3>
-          <span onClick={openCreateModal} className="open-modal-button">+</span>
+          {props.expenseTypes.length > 0 && (
+            <span onClick={openCreateModal} className="open-modal-button">+</span>
+          )}
         </div>
         <h4>{props.selectedMonthYear.monthName}/{props.selectedMonthYear.yearNumber}</h4>
       </div>
