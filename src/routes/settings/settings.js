@@ -3,8 +3,9 @@ import Year from "./years/year";
 import ExpenseType from "./expenseType/expenseType";
 import useSettings from "./settingsLogic";
 import RoundLoading from "../../components/loading/roundLoading/roundLoading";
-import "../../App.css";
 import ErrorMessageContainer from "../../components/error/errorMessageContainer";
+import "../../App.css";
+import "./settings.css";
 
 function Settings() {
 
@@ -22,10 +23,10 @@ function Settings() {
       )}
 
       {!loadingComponent && !loadingError && (
-        <>
+        <div className="settings-container">
           <Year years={years}/>
           <ExpenseType expenseTypes={expenseTypes}/>
-        </>
+        </div>
       )}
     </div>
   )

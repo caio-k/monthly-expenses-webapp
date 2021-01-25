@@ -1,6 +1,6 @@
 .years-container {
-    width: calc(100% - 40px);
-    max-height: 350px;
+    width: calc(50% - 50px);
+    min-height: 100%;
     padding: 2px 20px 20px;
     border-radius: 5px;
     background-color: #FFFFFF;
@@ -46,4 +46,11 @@
 .edit-modal-content {
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (max-width: 856px) {
+    .years-container {
+        width: calc(100% - 40px);
+        min-height: fit-content;
+    }
 }

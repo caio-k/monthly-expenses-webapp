@@ -35,11 +35,11 @@ function ExpenseType(props) {
     <div className="expense-type-container">
       <div className="expense-type-header">
         <div>
-          <h2>Tipos de despesa</h2>
+          <h3>Tipos de despesa</h3>
         </div>
         <SimpleSlidingForm
           type={"text"}
-          placeholder={"Tipo de despesa"}
+          placeholder={"Digite aqui..."}
           maxLength={"255"}
           label={"+"}
           inputWidth={"115px"}

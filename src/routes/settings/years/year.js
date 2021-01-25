@@ -34,10 +34,10 @@ function Year(props) {
   return (
     <div className="years-container">
       <div className="years-header">
-        <h2>Anos</h2>
+        <h3>Anos</h3>
         <SimpleSlidingForm
           type={"number"}
-          placeholder={"Crie um novo ano"}
+          placeholder={"Digite aqui..."}
           maxLength={"4"}
           label={"+"}
           inputWidth={"115px"}

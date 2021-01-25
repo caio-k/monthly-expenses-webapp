@@ -1,27 +1,27 @@
 .simple-sliding-form {
-    background-color: #0088a9;
-    height: 30px;
-    border-radius: 30px;
+    background-color: #eeeeee;
+    height: 20px;
+    border-radius: 5px;
     padding: 10px;
 }
 
 .simple-sliding-form:hover > input {
-    padding: 0 6px;
+    padding: 0 2px;
 }
 
 .simple-sliding-form button {
     color: #FFFFFF;
-    font-size: 35px;
+    font-size: 30px;
     float: right;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    width: 20px;
+    height: 20px;
     background-color: #0088a9;
     display: flex;
     justify-content: center;
     align-items: center;
     border: none;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .simple-sliding-form button:focus {
@@ -35,30 +35,9 @@
     outline: none;
     float: left;
     padding: 0;
-    color: white;
     font-size: 14px;
     transition: 0.4s;
-    line-height: 30px;
-}
-
-.simple-sliding-form input::-webkit-input-placeholder {
-    color: #FFFFFF;
-    opacity: 0.8;
-}
-
-.simple-sliding-form input:-moz-placeholder { /* Firefox 18- */
-    color: #FFFFFF;
-    opacity: 0.8;
-}
-
-.simple-sliding-form input::-moz-placeholder { /* Firefox 19+ */
-    color: #FFFFFF;
-    opacity: 0.8;
-}
-
-.simple-sliding-form input:-ms-input-placeholder {
-    color: #FFFFFF;
-    opacity: 0.8;
+    line-height: 20px;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
