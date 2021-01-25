@@ -91,6 +91,24 @@
     outline: none;
 }
 
+.expense-information-container {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.expense-information-container > span {
+    padding: 0 6px;
+    font-weight: bold;
+    color: #FFFFFF;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: #0088a9;
+    border-radius: 50%;
+    line-height: 20px;
+}
+
 @media screen and (max-width: 450px) {
     .expenses-info-title-header {
         width: 100%;
