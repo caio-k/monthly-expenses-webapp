@@ -1,0 +1,71 @@
+.statistics-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.statistics-container > div {
+    width: calc(50%);
+    margin: 0 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.statistics-container > div {
+    background-color: #eeeeee;
+}
+
+.statistics-box > div > h4 {
+    padding: 10px;
+    background-color: #0088a9;
+    color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.statistics-chart-container {
+    margin: 0 auto;
+}
+
+.statistic-numbers-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.statistic-numbers-card > div {
+    width: 200px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.statistic-numbers-card > div > p {
+    margin: 0;
+    color: #FFFFFF;
+}
+
+.statistic-numbers-card > div > p:first-child {
+    font-weight: bold;
+    margin: 5px 0;
+    font-size: 21px;
+}
+
+.simple-statistics-message {
+    text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+    .statistics-container {
+        flex-direction: column;
+    }
+
+    .statistics-container > div {
+        width: calc(100% - 40px);
+    }
+
+    .statistics-container > div:last-child {
+        margin-top: 20px;
+    }
+}
+
+

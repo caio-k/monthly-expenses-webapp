@@ -5,6 +5,7 @@ import ErrorMessageContainer from "../../components/error/errorMessageContainer"
 import MonthYear from "./monthYear/monthYear";
 import InitialMoney from "./initialMoney/initialMoney";
 import ExpensesInfo from "./expenses/expensesInfo";
+import Statistics from "./statistics/statistics";
 import "../../App.css";
 import "./expenses.css";
 
@@ -43,6 +44,8 @@ function Expenses() {
                             selectedMonthYear={selectedMonthYear}
                             addExpenseObjectOnListAndFocus={addExpenseObjectOnListAndFocus}
                             updateExpenseInfo={updateExpenseInfo} deleteExpenseInfo={deleteExpenseInfo}/>
+              <Statistics expensesOnFocus={expensesOnFocus} selectedMonthYear={selectedMonthYear}
+                          initialMoneyOnFocus={initialMoneyOnFocus} expenseTypes={expenseTypes}/>
             </>
           )}
         </div>
