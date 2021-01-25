@@ -51,8 +51,8 @@ function ExpensesInfo(props) {
         <td>
           <span>{findExpenseTypeById(expenseInfo.expenseTypeId)}</span>
         </td>
-        <td className="fixed-cells-width-150">
-          <span>{expenseInfo.price}</span>
+        <td className="fixed-cells-width-100 number-column">
+          <span>{expenseInfo.price.toFixed(2)}</span>
         </td>
         <td className="fixed-cells-width-80" onClick={() => openUpdateModal(expenseInfo)}>
           <img src={editIcon} alt="Editar"/>
@@ -220,7 +220,7 @@ function ExpensesInfo(props) {
                 <th className="fixed-cells-width-80">Pago</th>
                 <th>Nome</th>
                 <th>Tipo</th>
-                <th className="fixed-cells-width-150">Preço (R$)</th>
+                <th className="fixed-cells-width-100">Preço (R$)</th>
                 <th className="fixed-cells-width-80">Editar</th>
                 <th className="fixed-cells-width-80">Remover</th>
               </tr>

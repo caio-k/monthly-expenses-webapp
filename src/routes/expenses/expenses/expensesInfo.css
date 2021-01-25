@@ -30,8 +30,16 @@
     width: 80px;
 }
 
-.fixed-cells-width-150 {
-    width: 150px;
+.fixed-cells-width-100 {
+    width: 100px;
+}
+
+.number-column {
+    text-align: right;
+}
+
+.number-column > span {
+    margin-right: 5px;
 }
 
 .expense-info-modal > div {
