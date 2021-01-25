@@ -1,12 +1,13 @@
 import React from "react";
 import SimpleSlidingForm from "../../../components/forms/simpleSlidingForm/simpleSlidingForm";
 import useExpenseType from "./expenseTypeLogic";
-import VerticallyResponsiveTable from "../../../components/tables/verticallyResponsiveTable/verticallyResponsiveTable";
+import FullyResponsiveTable from "../../../components/tables/fullyResponsiveTable/fullyResponsiveTable";
 import Modal from "../../../components/modal/modal";
 import SimpleButton from "../../../components/buttons/simpleButton";
 import editIcon from "../../../assets/edit.svg";
 import trashIcon from "../../../assets/trash.svg";
 import "./expenseType.css";
+import infoIcon from "../../../assets/info.svg";
 
 function ExpenseType(props) {
   const [{expenseTypes, newExpenseType, expenseTypeOnFocus, expenseTypeEdited, editModalVisible, deleteModalVisible},
@@ -20,11 +21,11 @@ function ExpenseType(props) {
           <span>{expenseTypeObject.name}</span>
         </td>
 
-        <td onClick={() => openEditModal(expenseTypeObject)}>
+        <td className="fixed-cells-width-80" onClick={() => openEditModal(expenseTypeObject)}>
           <img src={editIcon} alt="Editar"/>
         </td>
 
-        <td onClick={() => openDeleteModal(expenseTypeObject)}>
+        <td className="fixed-cells-width-80" onClick={() => openDeleteModal(expenseTypeObject)}>
           <img src={trashIcon} alt="Remover"/>
         </td>
       </tr>
@@ -83,23 +84,30 @@ function ExpenseType(props) {
 
         <div className="table-expense-types-container">
           {expenseTypes.length === 0 && (
-            <p> Você ainda não cadastrou nenhum tipo de despesa! Clique no botão <span
-              className="create-expense-type-simulation-btn">+</span> acima para cadastrar.</p>
+            <div className="expense-type-information-container">
+              <div>
+                <img src={infoIcon} alt={"Atenção:"} width={50} height={50}/>
+              </div>
+              <div>
+                <p> Você ainda não cadastrou nenhum <strong>tipo de despesa</strong>! Clique no botão <span
+                  className="create-expense-type-simulation-btn">+</span> acima para cadastrar.</p>
+              </div>
+            </div>
           )}
 
           {expenseTypes.length > 0 && (
-            <VerticallyResponsiveTable>
+            <FullyResponsiveTable minWidth={250}>
               <thead>
               <tr>
                 <th>Tipo de despesa</th>
-                <th>Editar</th>
-                <th>Remover</th>
+                <th className="fixed-cells-width-80">Editar</th>
+                <th className="fixed-cells-width-80">Remover</th>
               </tr>
               </thead>
-              <tbody>
+              <tbody style={{maxHeight: "200px"}}>
               {expenseTypes.map(renderRow)}
               </tbody>
-            </VerticallyResponsiveTable>
+            </FullyResponsiveTable>
           )}
         </div>
 

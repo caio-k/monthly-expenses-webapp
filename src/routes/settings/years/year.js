@@ -3,9 +3,10 @@ import useYear from "./yearLogic";
 import Modal from "../../../components/modal/modal";
 import SimpleButton from "../../../components/buttons/simpleButton";
 import SimpleSlidingForm from "../../../components/forms/simpleSlidingForm/simpleSlidingForm";
-import VerticallyResponsiveTable from "../../../components/tables/verticallyResponsiveTable/verticallyResponsiveTable";
+import FullyResponsiveTable from "../../../components/tables/fullyResponsiveTable/fullyResponsiveTable";
 import editIcon from "../../../assets/edit.svg";
 import trashIcon from "../../../assets/trash.svg";
+import infoIcon from "../../../assets/info.svg";
 import "./year.css";
 
 function Year(props) {
@@ -20,11 +21,11 @@ function Year(props) {
           <span>{yearObject.yearNumber}</span>
         </td>
 
-        <td onClick={() => openEditModal(yearObject)}>
+        <td className="fixed-cells-width-80" onClick={() => openEditModal(yearObject)}>
           <img src={editIcon} alt="Editar"/>
         </td>
 
-        <td onClick={() => openDeleteModal(yearObject)}>
+        <td className="fixed-cells-width-80" onClick={() => openDeleteModal(yearObject)}>
           <img src={trashIcon} alt="Remover"/>
         </td>
       </tr>
@@ -80,23 +81,30 @@ function Year(props) {
 
         <div className="table-years-container">
           {years.length === 0 && (
-            <p>Você ainda não cadastrou nenhum ano! Clique no botão <span
-              className="create-year-simulation-btn">+</span> acima para cadastrar.</p>
+            <div className="year-information-container">
+              <div>
+                <img src={infoIcon} alt={"Atenção:"} width={50} height={50}/>
+              </div>
+              <div>
+                <p>Você ainda não cadastrou nenhum <strong>ano</strong>! Clique no botão <span
+                  className="create-year-simulation-btn">+</span> acima para cadastrar.</p>
+              </div>
+            </div>
           )}
 
           {years.length > 0 && (
-            <VerticallyResponsiveTable>
+            <FullyResponsiveTable minWidth={250}>
               <thead>
               <tr>
                 <th>Ano</th>
-                <th>Editar</th>
-                <th>Remover</th>
+                <th className="fixed-cells-width-80">Editar</th>
+                <th className="fixed-cells-width-80">Remover</th>
               </tr>
               </thead>
-              <tbody>
+              <tbody style={{maxHeight: "200px"}}>
               {years.map(renderRow)}
               </tbody>
-            </VerticallyResponsiveTable>
+            </FullyResponsiveTable>
           )}
         </div>
       </div>

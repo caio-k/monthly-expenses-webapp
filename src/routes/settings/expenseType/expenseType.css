@@ -22,18 +22,28 @@
 .table-expense-types-container {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
-.table-expense-types-container p {
-    margin-top: 30px;
+.expense-type-information-container {
+    display: flex;
+    align-items: center;
+}
+
+.expense-type-information-container > div:first-child {
+    margin-right: 20px;
 }
 
 .create-expense-type-simulation-btn {
+    padding: 0 6px;
+    font-weight: bold;
     color: #FFFFFF;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
     background-color: #0088a9;
     border-radius: 50%;
-    padding: 1px 5px;
-    font-weight: bold;
+    line-height: 20px;
 }
 
 .expense-type-input-edit {
@@ -50,6 +60,10 @@
 .edit-modal-content {
     display: flex;
     flex-direction: column;
+}
+
+.fixed-cells-width-80 {
+    width: 80px;
 }
 
 @media screen and (max-width: 856px) {
