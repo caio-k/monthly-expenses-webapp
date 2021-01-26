@@ -19,8 +19,8 @@ const InitialMoney = (props) => {
       {editModalVisible && (
         <Modal onClose={closeEditModal}>
           <div className="initial-money-modal">
-            <h3>Editar Dinheiro Inicial</h3>
-            <h4>{props.selectedMonthYear.monthName}/{props.selectedMonthYear.yearNumber} - <strong>R${props.initialMoneyOnFocus.initialMoney}</strong>
+            <h3>Editar Capital Inicial</h3>
+            <h4>{props.selectedMonthYear.monthName}/{props.selectedMonthYear.yearNumber} - <strong>R${props.initialMoneyOnFocus.initialMoney.toFixed(2)}</strong>
             </h4>
 
             <form onSubmit={handleUpdate}>
@@ -55,7 +55,7 @@ const InitialMoney = (props) => {
 
                 {(!isNaN(initialMoneyValueEdited) && initialMoneyValueChange.length > 0) && (
                   <>
-                    <span>O valor inicial será atualizado para <strong>R${initialMoneyValueEdited}</strong></span>
+                    <span>O capital inicial será atualizado para <strong>R${initialMoneyValueEdited}</strong></span>
                     <div className={"button-session-initial-money"} style={{marginLeft: "10px"}}>
                       <button type="submit" style={{marginTop: "0"}}>Atualizar</button>
                     </div>
@@ -68,7 +68,7 @@ const InitialMoney = (props) => {
       )}
 
       <div className="expenses-box-session-header">
-        <h3>Dinheiro Inicial</h3>
+        <h3>Capital Inicial</h3>
         <h4>{props.selectedMonthYear.monthName}/{props.selectedMonthYear.yearNumber}</h4>
       </div>
 
@@ -79,7 +79,7 @@ const InitialMoney = (props) => {
             <div>
               <img src={infoIcon} alt={"Atenção"} width={50} height={50}/>
               <p>
-                Nenhum valor inicial foi cadastrado para o mês
+                Nenhum capital inicial foi cadastrado para o mês
                 de {props.selectedMonthYear.monthName}/{props.selectedMonthYear.yearNumber}.
                 <strong> Cadastre agora mesmo:</strong>
               </p>
@@ -89,7 +89,7 @@ const InitialMoney = (props) => {
               <div>
                 <label><strong>$</strong></label>
                 <input
-                  placeholder={"Digite aqui o valor inicial"}
+                  placeholder={"Digite aqui o capital inicial"}
                   type="number"
                   required
                   value={newInitialMoneyValue}
@@ -107,7 +107,7 @@ const InitialMoney = (props) => {
         {props.initialMoneyOnFocus && (
           <div className="initial-money-value-session">
             <img src={checkMark} alt={"Ok"} width={40} height={40}/>
-            <p>O valor inicial é de <strong>R${props.initialMoneyOnFocus.initialMoney}</strong>
+            <p>O capital inicial é de <strong>R${props.initialMoneyOnFocus.initialMoney.toFixed(2)}</strong>
               . Deseja alterar? <span onClick={openEditModal}>Clique aqui</span>.</p>
           </div>
         )}
