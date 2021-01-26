@@ -61,18 +61,11 @@
 }
 
 .statistics-chart-container {
-    height: 300px;
-    width: 400px;
+    height: 220px;
+    width: 300px;
 }
 
 .statistics-chart-container-empty {
     height: 0;
     width: 0;
-}
-
-@media screen and (max-width: 420px) {
-    .statistics-chart-container {
-        height: 220px;
-        width: 300px;
-    }
 }
