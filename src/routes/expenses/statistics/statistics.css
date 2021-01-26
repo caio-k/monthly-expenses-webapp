@@ -1,71 +1,71 @@
 .statistics-container {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
 }
 
-.statistics-container > div {
-    width: calc(50%);
-    margin: 0 10px;
-    border-radius: 5px;
-    padding: 10px;
+.statistics-box {
+    width: calc(50% - 10px);
+    min-width: fit-content;
+    margin-bottom: 10px;
+    padding: 5px;
 }
 
-.statistics-container > div {
-    background-color: #eeeeee;
-}
-
-.statistics-box > div > h4 {
-    padding: 10px;
-    background-color: #0088a9;
-    color: #FFFFFF;
-    border-radius: 5px;
-}
-
-.statistics-chart-container {
-    margin: 0 auto;
+.statistics-box:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .statistic-numbers-card {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #edf2f4;
+    border: 1px solid silver;
+    border-top: 4px solid silver;
+    box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, .1);
+    border-radius: 5px;
+    margin: 20px 0;
 }
 
-.statistic-numbers-card > div {
+.statistic-numbers-card > div:last-child {
+    margin-bottom: 20px;
+}
+
+.statistic-numbers-card > div > div {
     width: 200px;
     border-radius: 5px;
     text-align: center;
     padding: 15px;
-    margin: 15px 0;
+    margin: 20px 10px 0;
 }
 
-.statistic-numbers-card > div > p {
+.statistic-numbers-card > div > div > p {
     margin: 0;
     color: #FFFFFF;
 }
 
-.statistic-numbers-card > div > p:first-child {
+.statistic-numbers-card > div > div > p:first-child {
     font-weight: bold;
     margin: 5px 0;
     font-size: 21px;
 }
 
-.simple-statistics-message {
-    text-align: center;
+.statistics-box:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@media screen and (max-width: 800px) {
-    .statistics-container {
-        flex-direction: column;
-    }
-
-    .statistics-container > div {
-        width: calc(100% - 40px);
-    }
-
-    .statistics-container > div:last-child {
-        margin-top: 20px;
-    }
+.statistics-chart-container {
+    height: 300px;
+    width: 400px;
 }
 
-
+.statistics-chart-container-empty {
+    height: 0;
+    width: 0;
+}
