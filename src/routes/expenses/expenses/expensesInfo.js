@@ -84,7 +84,7 @@ function ExpensesInfo(props) {
       <div>
         {props.expenseTypes.length === 0 && (
           <ErrorMessageContainer
-            message={"Você ainda não cadastrou nenhum tipo de despesa. Vá até a aba de \"Configurações\" e cadastre agora mesmo!"}/>
+            message={"Você ainda não cadastrou nenhum grupo de despesa. Vá até a aba de \"Configurações\" e cadastre agora mesmo!"}/>
         )}
 
         {props.expenseTypes.length > 0 && props.expensesOnFocus.length === 0 && (
@@ -121,7 +121,7 @@ function ExpensesInfo(props) {
 
                     <div>
                       <div>
-                        <label>Tipo</label>
+                        <label>Grupo</label>
                         <div>
                           <CustomSelectInput value={createExpenseInfoExpenseTypeId}
                                              onChange={handleCreateExpenseInfoExpenseTypeIdChange}>
@@ -177,7 +177,7 @@ function ExpensesInfo(props) {
 
                     <div>
                       <div>
-                        <label>Tipo</label>
+                        <label>Grupo</label>
                         <div>
                           <CustomSelectInput value={updateExpenseInfoExpenseTypeId}
                                              onChange={handleUpdateExpenseInfoExpenseTypeIdChange}>
@@ -221,7 +221,7 @@ function ExpensesInfo(props) {
               <tr>
                 <th className="fixed-cells-width-80">Pago</th>
                 <th>Nome</th>
-                <th>Tipo</th>
+                <th>Grupo</th>
                 <th className="fixed-cells-width-100">Preço (R$)</th>
                 <th className="fixed-cells-width-80">Editar</th>
                 <th className="fixed-cells-width-80">Remover</th>

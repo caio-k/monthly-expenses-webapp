@@ -6,8 +6,8 @@ import Modal from "../../../components/modal/modal";
 import SimpleButton from "../../../components/buttons/simpleButton";
 import editIcon from "../../../assets/edit.svg";
 import trashIcon from "../../../assets/trash.svg";
-import "./expenseType.css";
 import infoIcon from "../../../assets/info.svg";
+import "./expenseType.css";
 
 function ExpenseType(props) {
   const [{expenseTypes, newExpenseType, expenseTypeOnFocus, expenseTypeEdited, editModalVisible, deleteModalVisible},
@@ -36,7 +36,7 @@ function ExpenseType(props) {
     <div className="expense-type-container">
       <div className="expense-type-header">
         <div>
-          <h3>Tipos de despesa</h3>
+          <h3>Grupos de despesa</h3>
         </div>
         <SimpleSlidingForm
           type={"text"}
@@ -54,7 +54,7 @@ function ExpenseType(props) {
       <div className="expense-type-content">
         {editModalVisible && (
           <Modal onClose={closeEditModal}>
-            <h4>Editar o tipo de despensa "{expenseTypeOnFocus.name}" para:</h4>
+            <h4>Editar o grupo de despensa "{expenseTypeOnFocus.name}" para:</h4>
             <div className="edit-modal-content">
               <input type="text" required value={expenseTypeEdited} maxLength="255" autoComplete="off"
                      onChange={handleNewExpenseTypeEditedChange} className="expense-type-input-edit"/>
@@ -70,8 +70,8 @@ function ExpenseType(props) {
 
         {deleteModalVisible && (
           <Modal onClose={closeDeleteModal}>
-            <h4>Deseja mesmo remover o tipo de despesa "{expenseTypeOnFocus.name}" ?</h4>
-            <h5>Atenção: Todas as despesas relacionadas à este tipo de despesa também serão removidas!</h5>
+            <h4>Deseja mesmo remover o grupo de despesa "{expenseTypeOnFocus.name}" ?</h4>
+            <h5>Atenção: Todas as despesas relacionadas à este grupo também serão removidas!</h5>
 
             <div className="modal-btns-box-1">
               <SimpleButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
@@ -89,7 +89,7 @@ function ExpenseType(props) {
                 <img src={infoIcon} alt={"Atenção:"} width={50} height={50}/>
               </div>
               <div>
-                <p> Você ainda não cadastrou nenhum <strong>tipo de despesa</strong>! Clique no botão <span
+                <p> Você ainda não cadastrou nenhum <strong>grupo de despesa</strong>! Clique no botão <span
                   className="create-expense-type-simulation-btn">+</span> acima para cadastrar.</p>
               </div>
             </div>
@@ -99,7 +99,7 @@ function ExpenseType(props) {
             <FullyResponsiveTable minWidth={250}>
               <thead>
               <tr>
-                <th>Tipo de despesa</th>
+                <th>Grupo de despesa</th>
                 <th className="fixed-cells-width-80">Editar</th>
                 <th className="fixed-cells-width-80">Remover</th>
               </tr>
@@ -110,7 +110,6 @@ function ExpenseType(props) {
             </FullyResponsiveTable>
           )}
         </div>
-
       </div>
     </div>
   )

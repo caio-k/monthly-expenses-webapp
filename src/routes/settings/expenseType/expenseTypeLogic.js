@@ -110,7 +110,7 @@ const useExpenseType = (expenseTypeList) => {
     const alreadyExitsExpenseTypeName = expenseTypes.some(element => element.name === expenseTypeName);
 
     if (alreadyExitsExpenseTypeName) {
-      handleErrorNotification("Oops, o tipo de despesa \"" + expenseTypeName + "\" já está cadastrado!");
+      handleErrorNotification("Oops, o grupo de despesa \"" + expenseTypeName + "\" já está cadastrado!");
       return false;
     } else {
       return true;

@@ -55,7 +55,7 @@ const useStatistics = (expensesOnFocus, initialMoneyOnFocus, expenseTypes) => {
           labels: labels,
           datasets: [
             {
-              label: 'Gastos por tipo de despesa',
+              label: 'Gastos por grupo de despesa',
               data: data,
               backgroundColor: backgroundColors
             }
@@ -64,7 +64,7 @@ const useStatistics = (expensesOnFocus, initialMoneyOnFocus, expenseTypes) => {
         options: {
           title: {
             display: true,
-            text: 'Gasto por tipo de despesa',
+            text: 'Gasto por grupo de despesa',
             position: 'top',
             fontColor: 'black',
             fontFamily: "'Work Sans', sans-serif",
