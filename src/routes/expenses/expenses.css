@@ -41,6 +41,16 @@
     }
 }
 
+@media screen and (max-width: 500px) {
+    .expenses-box-session {
+        margin: 10px 0;
+    }
+
+    .full-box {
+        width: calc(100% - 40px);
+    }
+}
+
 @media screen and (max-width: 450px) {
     .expenses-box-session-header {
         flex-direction: column;
