@@ -19,7 +19,7 @@ const useStatistics = (expensesOnFocus, initialMoneyOnFocus, expenseTypes) => {
   useEffect(() => {
     buildChart();
     // eslint-disable-next-line
-  }, [expensesOnFocus]);
+  }, [expensesOnFocus, initialMoneyOnFocus]);
 
   function buildChart() {
     if (statisticsChart) {
