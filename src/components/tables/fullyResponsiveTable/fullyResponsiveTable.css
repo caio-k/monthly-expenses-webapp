@@ -35,6 +35,10 @@
     border-bottom: 1px solid #dddddd;
 }
 
+.fully-responsive-table > table > tbody tr > td {
+    overflow: auto;
+}
+
 .fully-responsive-table > table > thead, .fully-responsive-table > table > tbody tr {
     display: table;
     width: 100%;

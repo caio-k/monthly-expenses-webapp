@@ -28,7 +28,7 @@ const useExpenses = () => {
   const [selectedMonthYear, setSelectedMonthYear] = useState(createMonthYearObject());
   const [loadingComponent, setLoadingComponent] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
-  const [handleErrorNotification] = useNotification();
+  const [handleSuccessNotification, handleErrorNotification] = useNotification();
 
   useEffect(() => {
     ExpensesService.getInitializationData().then(
@@ -63,6 +63,7 @@ const useExpenses = () => {
     if (checkIfMonthYearAlreadySought(actualMonthYear.yearNumber, actualMonthYear.monthNumber)) {
       setNewInitialMoneyOnFocus(actualMonthYear.monthNumber, actualMonthYear.yearNumber);
       setNewExpensesOnFocus(actualMonthYear.monthNumber, actualMonthYear.yearNumber);
+      handleSuccessNotification("Dados carregados!");
     } else {
       setMonthYearsSought(list => [...list, actualMonthYear]);
 
@@ -70,6 +71,7 @@ const useExpenses = () => {
         response => {
           addInitialMoneyOnListAndFocus(response.data.initialMoney);
           addExpensesListOnListAndFocus(response.data.expenseInfos);
+          handleSuccessNotification("Dados carregados!");
         },
         error => {
           handleErrorNotification(error);

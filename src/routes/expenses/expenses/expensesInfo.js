@@ -216,7 +216,7 @@ function ExpensesInfo(props) {
               </Modal>
             )}
 
-            <FullyResponsiveTable>
+            <FullyResponsiveTable minWidth={650}>
               <thead>
               <tr>
                 <th className="fixed-cells-width-80">Pago</th>
