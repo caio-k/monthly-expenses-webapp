@@ -1,6 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import AuthService from "./services/auth/AuthService";
+import Home from "./routes/home/home";
 import Login from "./routes/publicForm/login/login";
 import SignUp from "./routes/publicForm/signup/signup";
 import NotFound from "./routes/notfound/notfound";
@@ -23,7 +24,7 @@ function Routes() {
     <Router>
       <div className="site-content">
         <Switch>
-          <Route exact path="/" component={() => <h1>Home</h1>}/>
+          <Route exact path="/" component={Home}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/signup" component={SignUp}/>
           <Route exact path="/notfound" component={NotFound}/>
