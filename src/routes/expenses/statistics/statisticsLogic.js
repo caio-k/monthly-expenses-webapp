@@ -19,24 +19,21 @@ const useStatistics = (expensesOnFocus, initialMoneyOnFocus, expenseTypes) => {
   useEffect(() => {
     buildChart();
     // eslint-disable-next-line
-  }, [expensesOnFocus, initialMoneyOnFocus]);
+  }, [expensesOnFocus]);
+
+  useEffect(() => {
+    updateMetrics();
+    // eslint-disable-next-line
+  }, [initialMoneyOnFocus]);
 
   function buildChart() {
     if (statisticsChart) {
       statisticsChart.destroy();
     }
 
-    const dataset = buildDatasetStructure();
-    const metrics = populateDatasetAndGenerateMetrics(dataset);
-
-    setOpenExpensesPrice(metrics.totalOpenExpenses.toFixed(2));
-    setTotalSpent(metrics.totalSpentAmount.toFixed(2));
-    setEmptyChart(!metrics.hasValidExpenses);
-
-    if (initialMoneyOnFocus) {
-      const initialMoney = initialMoneyOnFocus.initialMoney;
-      setMoneyAvailable((initialMoney - metrics.totalSpentAmount).toFixed(2));
-    }
+    const response = updateMetrics();
+    const dataset = response.dataset;
+    const metrics = response.metrics;
 
     adjustLayout(metrics.hasValidExpenses);
 
@@ -77,6 +74,25 @@ const useStatistics = (expensesOnFocus, initialMoneyOnFocus, expenseTypes) => {
       });
 
       setStatisticsChart(statisticsChartInstance);
+    }
+  }
+
+  function updateMetrics() {
+    const dataset = buildDatasetStructure();
+    const metrics = populateDatasetAndGenerateMetrics(dataset);
+
+    setOpenExpensesPrice(metrics.totalOpenExpenses.toFixed(2));
+    setTotalSpent(metrics.totalSpentAmount.toFixed(2));
+    setEmptyChart(!metrics.hasValidExpenses);
+
+    if (initialMoneyOnFocus) {
+      const initialMoney = initialMoneyOnFocus.initialMoney;
+      setMoneyAvailable((initialMoney - metrics.totalSpentAmount).toFixed(2));
+    }
+
+    return {
+      dataset: dataset,
+      metrics: metrics
     }
   }
 
