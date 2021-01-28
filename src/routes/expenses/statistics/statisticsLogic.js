@@ -22,7 +22,7 @@ const useStatistics = (expensesOnFocus, initialMoneyOnFocus, expenseTypes) => {
   }, [expensesOnFocus]);
 
   useEffect(() => {
-    updateMetrics();
+    createCompleteDatasetAndSetDerivedMetrics();
     // eslint-disable-next-line
   }, [initialMoneyOnFocus]);
 
@@ -31,9 +31,9 @@ const useStatistics = (expensesOnFocus, initialMoneyOnFocus, expenseTypes) => {
       statisticsChart.destroy();
     }
 
-    const response = updateMetrics();
-    const dataset = response.dataset;
-    const metrics = response.metrics;
+    const datasetAndMetrics = createCompleteDatasetAndSetDerivedMetrics();
+    const dataset = datasetAndMetrics.dataset;
+    const metrics = datasetAndMetrics.metrics;
 
     adjustLayout(metrics.hasValidExpenses);
 
@@ -77,7 +77,7 @@ const useStatistics = (expensesOnFocus, initialMoneyOnFocus, expenseTypes) => {
     }
   }
 
-  function updateMetrics() {
+  function createCompleteDatasetAndSetDerivedMetrics() {
     const dataset = buildDatasetStructure();
     const metrics = populateDatasetAndGenerateMetrics(dataset);
 
