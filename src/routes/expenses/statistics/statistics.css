@@ -6,7 +6,6 @@
 }
 
 .statistics-box {
-    width: calc(50% - 10px);
     min-width: fit-content;
     margin-bottom: 10px;
     padding: 5px;
@@ -24,11 +23,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #edf2f4;
-    border: 1px solid silver;
-    border-top: 4px solid silver;
-    box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, .1);
-    border-radius: 5px;
     margin: 20px 0;
 }
 
@@ -59,6 +53,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 400px;
 }
 
 .statistics-chart-container {
