@@ -3,6 +3,7 @@ import Header from "./components/header/header";
 import Routes from "./routes";
 import Footer from "./components/footer/footer";
 import "./App.css";
+import "./components/tooltip/customTooltip.css";
 
 function App() {
   return (
