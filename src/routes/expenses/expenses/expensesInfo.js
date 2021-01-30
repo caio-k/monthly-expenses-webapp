@@ -75,7 +75,8 @@ function ExpensesInfo(props) {
         <div className="expenses-info-title-header">
           <h3>Despesas</h3>
           {props.expenseTypes.length > 0 && (
-            <span onClick={openCreateModal} className="open-modal-button">+</span>
+            <span onClick={openCreateModal} className="open-modal-button custom-tooltip"
+                  data-tooltip="Cadastrar despesa">+</span>
           )}
         </div>
         <h4>{props.selectedMonthYear.monthName}/{props.selectedMonthYear.yearNumber}</h4>

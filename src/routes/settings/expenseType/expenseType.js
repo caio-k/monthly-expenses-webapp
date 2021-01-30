@@ -48,6 +48,7 @@ function ExpenseType(props) {
           onChange={handleNewExpenseTypeChange}
           handleSubmit={handleSubmit}
           buttonId={"create-expense-type-btn"}
+          tooltipText={"Adicionar grupo"}
         />
       </div>
 

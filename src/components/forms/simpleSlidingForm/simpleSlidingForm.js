@@ -14,7 +14,7 @@ function SimpleSlidingForm(props) {
         style={{width: props.inputWidth}}
         required />
 
-      <button id={props.buttonId} type="submit">
+      <button id={props.buttonId} type="submit" className="custom-tooltip" data-tooltip={props.tooltipText}>
         <span className="button-text">{props.label}</span>
       </button>
     </form>

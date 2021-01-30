@@ -46,6 +46,7 @@ function Year(props) {
           onChange={handleNewYearChange}
           handleSubmit={handleSubmit}
           buttonId={"create-year-btn"}
+          tooltipText={"Adicionar ano"}
         />
       </div>
 
