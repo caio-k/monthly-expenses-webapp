@@ -6,7 +6,7 @@ import "./monthYear.css";
 function MonthYear(props) {
 
   const [{years, selectedYear, selectedMonth}, handleSelectedYear, handleSelectedMonth]
-    = useMonthYear(props.years, props.selectedMonthYear, props.months);
+    = useMonthYear(props.years, props.selectedMonthYear, props.months, props.handleSubmit);
 
   function renderYearOption(yearObject) {
     return (
@@ -27,29 +27,23 @@ function MonthYear(props) {
       </div>
 
       <div className="expenses-box-session-content">
-        <form onSubmit={(e) => props.handleSubmit(e, selectedYear, props.months.indexOf(selectedMonth), selectedMonth)}>
-          <div className="custom-select-content">
-            <label>Selecione o ano:</label>
-            <div>
-              <CustomSelectInput onChange={handleSelectedYear} value={selectedYear}>
-                {years.map(renderYearOption)}
-              </CustomSelectInput>
-            </div>
+        <div className="custom-select-content">
+          <label>Selecione o ano:</label>
+          <div>
+            <CustomSelectInput onChange={handleSelectedYear} value={selectedYear}>
+              {years.map(renderYearOption)}
+            </CustomSelectInput>
           </div>
+        </div>
 
-          <div className="custom-select-content">
-            <label>Selecione o mês:</label>
-            <div>
-              <CustomSelectInput onChange={handleSelectedMonth} value={selectedMonth}>
-                {props.months.map(renderMonthOption)}
-              </CustomSelectInput>
-            </div>
+        <div className="custom-select-content">
+          <label>Selecione o mês:</label>
+          <div>
+            <CustomSelectInput onChange={handleSelectedMonth} value={selectedMonth}>
+              {props.months.map(renderMonthOption)}
+            </CustomSelectInput>
           </div>
-
-          <div className="button-session-month-year">
-            <button type="submit">Carregar</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   )
