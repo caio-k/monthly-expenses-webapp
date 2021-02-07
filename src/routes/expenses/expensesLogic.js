@@ -121,7 +121,9 @@ const useExpenses = () => {
     setExpensesOnFocus(expenses);
 
     let allExpensesCopy = [...allExpenses];
-    allExpensesCopy.push(expenses);
+    expenses.forEach(element => {
+      allExpensesCopy.push(element);
+    });
     setAllExpenses(allExpensesCopy);
   }
 
