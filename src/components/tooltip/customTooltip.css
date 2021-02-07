@@ -44,3 +44,10 @@
     border-top-color: var(--tooltip-color);
     transform-origin: top center;
 }
+
+@media screen and (max-width: 500px) {
+    .custom-tooltip::before,
+    .custom-tooltip::after {
+        display: none;
+    }
+}
