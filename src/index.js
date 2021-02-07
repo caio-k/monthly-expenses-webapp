@@ -4,9 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {ToastProvider} from 'react-toast-notifications';
+import {CustomToast} from "./components/notifications/customToast";
 
 ReactDOM.render(
-  <ToastProvider placement="top-right">
+  <ToastProvider placement="top-right" components={{Toast: CustomToast}}>
     <App/>
   </ToastProvider>,
   document.getElementById('root')
