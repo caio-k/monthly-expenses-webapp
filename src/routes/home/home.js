@@ -1,16 +1,25 @@
 import React from "react";
+import spreadsheets from "../../assets/spreadsheet.svg";
 import "./home.css";
 
 function Home() {
   return (
     <div className="home-container">
-      <div className="home-header">
-        <h1>Monthly Expenses</h1>
-        <p>Tudo o que você precisa para gerenciar suas despesas está aqui!</p>
-
+      <div>
         <div>
-          <a href="/login">Entrar</a>
-          <a href="/signup">Cadastrar</a>
+          <img src={spreadsheets} alt="spreadsheet"/>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <small>Seja bem vindo(a) ao</small>
+          <h1>Monthly</h1>
+          <h1>Expenses</h1>
+          <div>
+            <a href="/login">Entrar</a>
+            <a href="/signup">Cadastrar</a>
+          </div>
         </div>
       </div>
     </div>
