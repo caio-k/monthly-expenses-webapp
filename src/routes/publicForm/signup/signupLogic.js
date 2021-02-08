@@ -1,6 +1,7 @@
 import {useState} from "react";
 import validator from 'validator';
 import AuthService from "../../../services/auth/AuthService";
+import useNotification from "../../../components/notifications/notification";
 
 const useSignUpForm = () => {
   const [username, setUsername] = useState("");
@@ -10,6 +11,7 @@ const useSignUpForm = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
+  const [handleSuccessNotification, handleErrorNotification] = useNotification();
 
   const successStatus = "success";
   const errorStatus = "error";
@@ -34,15 +36,24 @@ const useSignUpForm = () => {
     event.preventDefault();
     setLoading(true);
 
-    if (validateInputs()) {
+    const error = hasInvalidInputs();
+
+    if (error) {
+      setLoading(false);
+      setMessageInfo(error, errorStatus);
+      handleErrorNotification(error);
+    } else {
       AuthService.register(username, email, password).then(
-        response => {
+        () => {
           setUsername("");
           setEmail("");
           setPassword("");
           setPasswordConfirmation("");
-          setMessageInfo(response.data.message, successStatus);
           setLoading(false);
+
+          const successMessage = "Usuário cadastrado com sucesso!";
+          setMessageInfo(successMessage, successStatus);
+          handleSuccessNotification(successMessage);
         },
         error => {
           const resMessage =
@@ -52,33 +63,27 @@ const useSignUpForm = () => {
             error.message ||
             error.toString();
 
-          setMessageInfo(resMessage, errorStatus);
           setLoading(false);
+          setMessageInfo(resMessage, errorStatus);
+          handleErrorNotification(error);
         }
       )
-    } else {
-      setLoading(false);
     }
   }
 
-  const validateInputs = () => {
+  const hasInvalidInputs = () => {
     if (!(username && email && password && passwordConfirmation)) {
-      setMessageInfo("Todos os campos são obrigatórios.", errorStatus);
-      return false;
+      return "Todos os campos são obrigatórios.";
     } else if (username.length < 3 || username.length > 20) {
-      setMessageInfo("Usuário deve ter de 3 a 20 caracteres.", errorStatus);
-      return false;
+      return "Usuário deve ter de 3 a 20 caracteres.";
     } else if (!validator.isEmail(email)) {
-      setMessageInfo("Insira um email válido.", errorStatus);
-      return false;
+      return "Insira um email válido.";
     } else if (password.length < 6 || password.length > 40) {
-      setMessageInfo("Senha deve ter de 6 a 40 caracteres.", errorStatus);
-      return false;
+      return "Senha deve ter de 6 a 40 caracteres.";
     } else if (!(password === passwordConfirmation)) {
-      setMessageInfo("Senhas diferentes.", errorStatus);
-      return false;
+      return "Senhas diferentes.";
     } else {
-      return true;
+      return false;
     }
   }
 
