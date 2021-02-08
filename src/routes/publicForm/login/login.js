@@ -24,8 +24,8 @@ function Login() {
           <label>Senha</label>
         </div>
 
-        <button type="submit" className="publicForm-btn">
-          {loading ? "Entrando..." : "Entrar"}
+        <button type="submit" className={loading ? "spinner publicForm-btn" : "publicForm-btn"}>
+          {loading ? "" : "Entrar"}
         </button>
 
         {message.length > 0 && (

@@ -42,8 +42,8 @@ function SignUp() {
           <label>Confirmar senha</label>
         </div>
 
-        <button type="submit" className="publicForm-btn">
-          {loading ? "Cadastrando..." : "Cadastrar"}
+        <button type="submit" className={loading ? "spinner publicForm-btn" : "publicForm-btn"}>
+          {loading ? "" : "Cadastrar"}
         </button>
 
         {message.length > 0 && (

@@ -106,6 +106,26 @@ form .txt-field {
     text-align: center;
 }
 
+.spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 3px solid #FFFFFF;
+    border-top-color: #0088a9;
+    animation: spinner .6s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @media screen and (max-width: 450px) {
     .publicForm-container {
         width: 300px;
