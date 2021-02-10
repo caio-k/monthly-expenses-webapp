@@ -25,7 +25,7 @@ const InitialMoney = (props) => {
 
             <form onSubmit={handleUpdate}>
               <div>
-                <span>Selecione a operação:</span>
+                <span>Operação:</span>
                 <div>
                   <CustomSelectInput value={operation} onChange={handleOperationChange} width={180}>
                     <option value={1}>Adicionar</option>

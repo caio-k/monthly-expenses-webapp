@@ -101,14 +101,16 @@
     display: flex;
     align-items: center;
     height: 46px;
+    border-radius: 6px;
+    box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.1);
 }
 
 .initial-money-modal label {
     height: calc(100% - 12px);
     padding: 12px 14px 0;
-    background-color: #DEE2E6;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    background-color: #dee2e6;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
     color: #6c757d;
 }
 
@@ -116,7 +118,7 @@
     height: 46px;
     line-height: 3;
     width: 118px;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 6px 6px 0;
     font-size: 15px;
     border: 0;
     outline: 0;

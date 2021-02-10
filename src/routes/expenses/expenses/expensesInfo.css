@@ -23,7 +23,7 @@
 }
 
 .expenses-info-create-modal h4 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .fixed-cells-width-80 {
@@ -67,6 +67,7 @@
     background-color: #eeeeee;
     border-radius: 5px;
     padding: 0 .5em;
+    box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.1);
 }
 
 .expense-info-modal > div > div input[type="checkbox"] {
