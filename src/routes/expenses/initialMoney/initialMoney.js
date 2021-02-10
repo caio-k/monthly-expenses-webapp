@@ -108,7 +108,7 @@ const InitialMoney = (props) => {
           <div className="initial-money-value-session">
             <img src={checkMark} alt={"Ok"} width={40} height={40}/>
             <p>O capital inicial é de <strong>R${props.initialMoneyOnFocus.initialMoney.toFixed(2)}</strong>
-              . Para alterar, <span onClick={openEditModal}>clique aqui</span>.</p>
+              . Para alterar, <span onClick={openEditModal}>clique aqui.</span></p>
           </div>
         )}
       </div>
