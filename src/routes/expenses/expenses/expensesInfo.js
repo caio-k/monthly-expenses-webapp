@@ -211,7 +211,7 @@ function ExpensesInfo(props) {
                 <div className="modal-btns-box-1">
                   <SimpleButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
                                 color={"#FFFFFF"}/>
-                  <SimpleButton onClick={handleExpenseInfoDelete} label={"Sim!"} backgroundColor={"#0088a9"}
+                  <SimpleButton onClick={handleExpenseInfoDelete} label={"Sim"} backgroundColor={"#0088a9"}
                                 color={"#FFFFFF"}/>
                 </div>
               </Modal>

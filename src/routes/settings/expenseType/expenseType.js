@@ -62,7 +62,7 @@ function ExpenseType(props) {
               <div className="modal-btns-box-1">
                 <SimpleButton onClick={closeEditModal} label={"Cancelar"} backgroundColor={"#e63946"}
                               color={"#FFFFFF"}/>
-                <SimpleButton onClick={handleEditSubmit} label={"Editar!"} backgroundColor={"#0088a9"}
+                <SimpleButton onClick={handleEditSubmit} label={"Editar"} backgroundColor={"#0088a9"}
                               color={"#FFFFFF"}/>
               </div>
             </div>
@@ -77,7 +77,7 @@ function ExpenseType(props) {
             <div className="modal-btns-box-1">
               <SimpleButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
                             color={"#FFFFFF"}/>
-              <SimpleButton onClick={handleDelete} label={"Sim!"} backgroundColor={"#0088a9"}
+              <SimpleButton onClick={handleDelete} label={"Sim"} backgroundColor={"#0088a9"}
                             color={"#FFFFFF"}/>
             </div>
           </Modal>

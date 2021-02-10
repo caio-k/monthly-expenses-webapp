@@ -82,7 +82,7 @@
 }
 
 .expense-info-modal > div:last-child > button {
-    height: 40px;
+    height: 35px;
     border: 1px solid;
     background-color: #0088a9;
     border-radius: 5px;
@@ -90,6 +90,7 @@
     color: #e9f4fb;
     cursor: pointer;
     outline: none;
+    min-width: 100px;
 }
 
 .expense-information-container {
