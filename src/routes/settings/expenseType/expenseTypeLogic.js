@@ -109,8 +109,11 @@ const useExpenseType = (expenseTypeList) => {
   const isAValidExpenseTypeName = (expenseTypeName) => {
     const alreadyExitsExpenseTypeName = expenseTypes.some(element => element.name === expenseTypeName);
 
-    if (alreadyExitsExpenseTypeName) {
-      handleErrorNotification("Oops, o grupo de despesa \"" + expenseTypeName + "\" já está cadastrado!");
+    if (!expenseTypeName) {
+      handleErrorNotification("O nome do grupo de despesa não pode estar em branco!");
+      return false;
+    } else if (alreadyExitsExpenseTypeName) {
+      handleErrorNotification("O grupo de despesa \"" + expenseTypeName + "\" já está cadastrado!");
       return false;
     } else {
       return true;
