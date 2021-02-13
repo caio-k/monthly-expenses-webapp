@@ -87,8 +87,8 @@ function Year(props) {
                 <img src={infoIcon} alt={"Atenção:"} width={50} height={50}/>
               </div>
               <div>
-                <p>Você ainda não cadastrou nenhum <strong>ano</strong>! Clique no botão <span
-                  className="create-year-simulation-btn">+</span> acima para cadastrar.</p>
+                <p>Nenhum <strong>ano</strong> foi cadastrado!</p>
+                <p>Clique no botão <span className="create-year-simulation-btn">+</span> acima para cadastrar.</p>
               </div>
             </div>
           )}

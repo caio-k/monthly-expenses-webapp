@@ -85,7 +85,7 @@ function ExpensesInfo(props) {
       <div>
         {props.expenseTypes.length === 0 && (
           <ErrorMessageContainer
-            message={"Você ainda não cadastrou nenhum grupo de despesa. Vá até a aba de \"Configurações\" e cadastre agora mesmo!"}/>
+            message={"Você ainda não cadastrou nenhum grupo de despesa. Clique no menu de \"Configurações\" para cadastrar!"}/>
         )}
 
         {props.expenseTypes.length > 0 && props.expensesOnFocus.length === 0 && (

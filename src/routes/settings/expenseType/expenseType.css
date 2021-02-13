@@ -28,10 +28,16 @@
 .expense-type-information-container {
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .expense-type-information-container > div:first-child {
     margin-right: 20px;
+}
+
+.expense-type-information-container > div p {
+    padding: 0;
+    margin: 5px 0;
 }
 
 .create-expense-type-simulation-btn {

@@ -30,7 +30,7 @@ function Expenses() {
         <div className="expenses-box">
           {years.length === 0 && (
             <ErrorMessageContainer
-              message={"Você ainda não cadastrou nenhum ano. Vá até a aba de \"Configurações\" e cadastre agora mesmo!"}/>
+              message={"Clique no menu de \"Configurações\" para personalizar o sistema!"}/>
           )}
 
           {years.length > 0 && (

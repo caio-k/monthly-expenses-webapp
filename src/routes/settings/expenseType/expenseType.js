@@ -90,8 +90,9 @@ function ExpenseType(props) {
                 <img src={infoIcon} alt={"Atenção:"} width={50} height={50}/>
               </div>
               <div>
-                <p> Você ainda não cadastrou nenhum <strong>grupo de despesa</strong>! Clique no botão <span
-                  className="create-expense-type-simulation-btn">+</span> acima para cadastrar.</p>
+                <p>Nenhum <strong>grupo de despesa</strong> foi cadastrado!</p>
+                <p> Clique no botão <span className="create-expense-type-simulation-btn">+</span> acima para cadastrar.
+                </p>
               </div>
             </div>
           )}

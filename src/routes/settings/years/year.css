@@ -24,10 +24,16 @@
 .year-information-container {
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .year-information-container > div:first-child {
     margin-right: 20px;
+}
+
+.year-information-container > div p {
+    padding: 0;
+    margin: 5px 0;
 }
 
 .create-year-simulation-btn {
