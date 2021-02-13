@@ -123,10 +123,10 @@ const useYear = (yearsList) => {
     const yearAlreadyExists = years.some(element => element.yearNumber === parseInt(year, 10));
 
     if (year.length < 4 || year.length > 4) {
-      handleErrorNotification("Oops, o ano deve ser composto por 4 números!");
+      handleErrorNotification("O ano deve ser composto por 4 números!");
       return false;
     } else if (yearAlreadyExists) {
-      handleErrorNotification("Oops, o ano " + year + " já está cadastrado!");
+      handleErrorNotification("O ano " + year + " já está cadastrado!");
       return false;
     } else {
       return true;

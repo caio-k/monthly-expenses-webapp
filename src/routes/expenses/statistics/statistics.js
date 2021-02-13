@@ -62,7 +62,7 @@ function Statistics(props) {
         <div className="statistics-box">
           {emptyChart && (
             <div className="simple-statistics-message">
-              <p>Oops! Nenhuma despesa paga!</p>
+              <p>Nenhuma despesa paga!</p>
             </div>
           )}
 
