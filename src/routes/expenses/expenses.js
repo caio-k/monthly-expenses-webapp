@@ -8,11 +8,12 @@ import ExpensesInfo from "./expenses/expensesInfo";
 import Statistics from "./statistics/statistics";
 import "../../App.css";
 import "./expenses.css";
+import FullScreenLoading from "../../components/loading/fullScreenLoading/fullScreenLoading";
 
 function Expenses() {
   const [{
     months, years, expenseTypes, initialMoneyOnFocus, expensesOnFocus, selectedMonthYear, loadingComponent,
-    loadingError
+    loadingError, loadingMonthYear
   }, handleSubmit, addInitialMoneyOnListAndFocus, updateInitialMoneyOnListAndFocus, addExpenseObjectOnListAndFocus,
     updateExpenseInfo, deleteExpenseInfo] = useExpenses();
 
@@ -35,17 +36,25 @@ function Expenses() {
 
           {years.length > 0 && (
             <>
-              <MonthYear months={months} years={years} handleSubmit={handleSubmit}
-                         selectedMonthYear={selectedMonthYear}/>
-              <InitialMoney initialMoneyOnFocus={initialMoneyOnFocus} selectedMonthYear={selectedMonthYear}
-                            addInitialMoneyOnListAndFocus={addInitialMoneyOnListAndFocus}
-                            updateInitialMoneyOnListAndFocus={updateInitialMoneyOnListAndFocus}/>
-              <ExpensesInfo expenseTypes={expenseTypes} expensesOnFocus={expensesOnFocus}
-                            selectedMonthYear={selectedMonthYear}
-                            addExpenseObjectOnListAndFocus={addExpenseObjectOnListAndFocus}
-                            updateExpenseInfo={updateExpenseInfo} deleteExpenseInfo={deleteExpenseInfo}/>
-              <Statistics expensesOnFocus={expensesOnFocus} selectedMonthYear={selectedMonthYear}
-                          initialMoneyOnFocus={initialMoneyOnFocus} expenseTypes={expenseTypes}/>
+              {loadingMonthYear && (
+                <FullScreenLoading/>
+              )}
+
+              {!loadingMonthYear && (
+                <>
+                  <MonthYear months={months} years={years} handleSubmit={handleSubmit}
+                             selectedMonthYear={selectedMonthYear}/>
+                  <InitialMoney initialMoneyOnFocus={initialMoneyOnFocus} selectedMonthYear={selectedMonthYear}
+                                addInitialMoneyOnListAndFocus={addInitialMoneyOnListAndFocus}
+                                updateInitialMoneyOnListAndFocus={updateInitialMoneyOnListAndFocus}/>
+                  <ExpensesInfo expenseTypes={expenseTypes} expensesOnFocus={expensesOnFocus}
+                                selectedMonthYear={selectedMonthYear}
+                                addExpenseObjectOnListAndFocus={addExpenseObjectOnListAndFocus}
+                                updateExpenseInfo={updateExpenseInfo} deleteExpenseInfo={deleteExpenseInfo}/>
+                  <Statistics expensesOnFocus={expensesOnFocus} selectedMonthYear={selectedMonthYear}
+                              initialMoneyOnFocus={initialMoneyOnFocus} expenseTypes={expenseTypes}/>
+                </>
+              )}
             </>
           )}
         </div>

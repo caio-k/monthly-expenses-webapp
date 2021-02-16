@@ -1,0 +1,32 @@
+.full-screen-loading {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.full-screen-spinner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: none;
+    border: 4px solid transparent;
+    border-top-color: #0088a9;
+    animation: spinner-full-screen 1s ease infinite;
+}
+
+@keyframes spinner-full-screen {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
