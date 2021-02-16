@@ -28,6 +28,7 @@ const useExpenseType = (expenseTypeList) => {
 
   const closeEditModal = () => {
     setEditModalVisible(false);
+    setExpenseTypeEdited("");
   }
 
   const openDeleteModal = (expenseTypeObject) => {

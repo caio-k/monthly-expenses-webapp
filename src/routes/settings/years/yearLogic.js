@@ -34,6 +34,7 @@ const useYear = (yearsList) => {
 
   const closeEditModal = () => {
     setEditModalVisible(false);
+    setNewYearEdited("");
   }
 
   const openDeleteModal = (yearObject) => {
