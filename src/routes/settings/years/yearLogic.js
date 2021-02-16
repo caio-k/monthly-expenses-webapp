@@ -8,7 +8,9 @@ const useYear = (yearsList) => {
   const [yearOnFocus, setYearOnFocus] = useState({});
   const [newYearEdited, setNewYearEdited] = useState("");
   const [editModalVisible, setEditModalVisible] = useState(false);
+  const [loadingEdit, setLoadingEdit] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
   const [handleSuccessNotification, handleErrorNotification] = useNotification();
 
   const handleNewYearChange = (event) => {
@@ -74,6 +76,8 @@ const useYear = (yearsList) => {
     event.preventDefault();
 
     if (isAValidYear(newYearEdited)) {
+      setLoadingEdit(true);
+
       YearService.updateYear(yearOnFocus.id, newYearEdited).then(
         response => {
           const yearIndex = getYearIndexByYearId(yearOnFocus.id);
@@ -87,10 +91,12 @@ const useYear = (yearsList) => {
           yearsBackup = sortYearsDecreasingly(yearsBackup);
 
           setYears(yearsBackup);
+          setLoadingEdit(false);
           setNewYearEdited("");
           closeEditModal();
         },
         error => {
+          setLoadingEdit(false);
           handleErrorNotification(error);
         }
       )
@@ -99,14 +105,17 @@ const useYear = (yearsList) => {
 
   const handleDeleteYear = (event) => {
     event.preventDefault();
+    setLoadingDelete(true);
 
     YearService.deleteYear(yearOnFocus.id).then(
       () => {
         setYears(years.filter(year => year.id !== yearOnFocus.id));
         handleSuccessNotification("Ano deletado com sucesso!");
+        setLoadingDelete(false);
         closeDeleteModal();
       },
       error => {
+        setLoadingDelete(false);
         handleErrorNotification(error);
       }
     )
@@ -137,7 +146,16 @@ const useYear = (yearsList) => {
     return years.findIndex(element => element.id === yearId);
   }
 
-  return [{years, newYear, yearOnFocus, newYearEdited, editModalVisible, deleteModalVisible},
+  return [{
+    years,
+    newYear,
+    yearOnFocus,
+    newYearEdited,
+    editModalVisible,
+    deleteModalVisible,
+    loadingEdit,
+    loadingDelete
+  },
     handleSubmit, handleEditSubmit, handleDeleteYear, handleNewYearChange, handleNewYearEditedChange,
     openEditModal, closeEditModal, openDeleteModal, closeDeleteModal];
 }

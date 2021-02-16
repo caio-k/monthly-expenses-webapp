@@ -20,6 +20,7 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
   const [updateExpenseInfoExpenseTypeId, setUpdateExpenseInfoExpenseTypeId] = useState(expenseTypes.length > 0 ? expenseTypes[0].id : null);
 
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
 
   const [handleSuccessNotification, handleErrorNotification] = useNotification();
 
@@ -156,14 +157,17 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
 
   const handleExpenseInfoDelete = (event) => {
     event.preventDefault();
+    setLoadingDelete(true);
 
     ExpensesInfoService.deleteExpenseInfo(expenseInfoOnFocus.id).then(
       () => {
         deleteExpenseInfo(expenseInfoOnFocus);
         handleSuccessNotification("Despesa removida com sucesso!");
+        setLoadingDelete(false);
         closeDeleteModal();
       },
       error => {
+        setLoadingDelete(false);
         handleErrorNotification(error);
       }
     )
@@ -181,7 +185,8 @@ const useExpensesInfo = (expensesOnFocus, selectedMonthYear, expenseTypes, addEx
     updateExpenseInfoPrice,
     updateExpenseInfoPaid,
     updateExpenseInfoExpenseTypeId,
-    deleteModalVisible
+    deleteModalVisible,
+    loadingDelete
   },
     openCreateModal, closeCreateModal, openUpdateModal, closeUpdateModal, openDeleteModal, closeDeleteModal,
     handleCreateExpenseInfoNameChange, handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange,

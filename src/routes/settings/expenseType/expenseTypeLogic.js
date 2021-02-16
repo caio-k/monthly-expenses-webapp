@@ -8,7 +8,9 @@ const useExpenseType = (expenseTypeList) => {
   const [expenseTypeOnFocus, setExpenseTypeOnFocus] = useState({});
   const [expenseTypeEdited, setExpenseTypeEdited] = useState("");
   const [editModalVisible, setEditModalVisible] = useState(false);
+  const [loadingEdit, setLoadingEdit] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
   const [handleSuccessNotification, handleErrorNotification] = useNotification();
 
   const handleNewExpenseTypeChange = (event) => {
@@ -68,6 +70,8 @@ const useExpenseType = (expenseTypeList) => {
     event.preventDefault();
 
     if (isAValidExpenseTypeName(expenseTypeEdited)) {
+      setLoadingEdit(true);
+
       ExpenseTypeService.updateExpenseType(expenseTypeOnFocus.id, expenseTypeEdited).then(
         response => {
           const expenseTypeIndex = getExpenseTypeIndexByExpenseTypeId(expenseTypeOnFocus.id);
@@ -82,9 +86,11 @@ const useExpenseType = (expenseTypeList) => {
 
           setExpenseTypes(expenseTypesBackup);
           setExpenseTypeEdited("");
+          setLoadingEdit(false);
           closeEditModal();
         },
         error => {
+          setLoadingEdit(false);
           handleErrorNotification(error);
         }
       )
@@ -93,14 +99,17 @@ const useExpenseType = (expenseTypeList) => {
 
   const handleDelete = (event) => {
     event.preventDefault();
+    setLoadingDelete(true);
 
     ExpenseTypeService.deleteExpenseType(expenseTypeOnFocus.id).then(
       () => {
         setExpenseTypes(expenseTypes.filter(element => element.id !== expenseTypeOnFocus.id));
         handleSuccessNotification("Despesa deletada com sucesso!");
+        setLoadingDelete(false);
         closeDeleteModal();
       },
       error => {
+        setLoadingDelete(false);
         handleErrorNotification(error);
       }
     )
@@ -131,7 +140,10 @@ const useExpenseType = (expenseTypeList) => {
     return expenseTypes.findIndex(element => element.id === id);
   }
 
-  return [{expenseTypes, newExpenseType, expenseTypeOnFocus, expenseTypeEdited, editModalVisible, deleteModalVisible},
+  return [{
+    expenseTypes, newExpenseType, expenseTypeOnFocus, expenseTypeEdited, editModalVisible, deleteModalVisible,
+    loadingEdit, loadingDelete
+  },
     handleSubmit, handleEditSubmit, handleDelete, handleNewExpenseTypeChange, handleNewExpenseTypeEditedChange,
     openEditModal, closeEditModal, openDeleteModal, closeDeleteModal];
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import useYear from "./yearLogic";
 import Modal from "../../../components/modal/modal";
-import SimpleButton from "../../../components/buttons/simpleButton";
+import SimpleLoadingButton from "../../../components/buttons/simpleLoadingButton";
 import SimpleSlidingForm from "../../../components/forms/simpleSlidingForm/simpleSlidingForm";
 import FullyResponsiveTable from "../../../components/tables/fullyResponsiveTable/fullyResponsiveTable";
 import editIcon from "../../../assets/edit.svg";
@@ -10,7 +10,7 @@ import infoIcon from "../../../assets/info.svg";
 import "./year.css";
 
 function Year(props) {
-  const [{years, newYear, yearOnFocus, newYearEdited, editModalVisible, deleteModalVisible},
+  const [{years, newYear, yearOnFocus, newYearEdited, editModalVisible, deleteModalVisible, loadingEdit, loadingDelete},
     handleSubmit, handleEditSubmit, handleDeleteYear, handleNewYearChange, handleNewYearEditedChange,
     openEditModal, closeEditModal, openDeleteModal, closeDeleteModal] = useYear(props.years);
 
@@ -58,10 +58,10 @@ function Year(props) {
               <input type="number" required value={newYearEdited} maxLength="4" autoComplete="off"
                      onChange={handleNewYearEditedChange} className="new-year-edited"/>
               <div className="modal-btns-box-1">
-                <SimpleButton onClick={closeEditModal} label={"Cancelar"} backgroundColor={"#e63946"}
-                              color={"#FFFFFF"}/>
-                <SimpleButton onClick={handleEditSubmit} label={"Editar"} backgroundColor={"#0088a9"}
-                              color={"#FFFFFF"}/>
+                <SimpleLoadingButton onClick={closeEditModal} label={"Cancelar"} backgroundColor={"#e63946"}
+                                     color={"#FFFFFF"}/>
+                <SimpleLoadingButton onClick={handleEditSubmit} label={"Editar"} backgroundColor={"#0088a9"}
+                                     color={"#FFFFFF"} loading={loadingEdit}/>
               </div>
             </div>
           </Modal>
@@ -72,10 +72,10 @@ function Year(props) {
             <h4>Deseja mesmo remover o ano {yearOnFocus.yearNumber}?</h4>
             <h5>Atenção: Todas as despesas relacionadas à este ano também serão removidas!</h5>
             <div className="modal-btns-box-1">
-              <SimpleButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
-                            color={"#FFFFFF"}/>
-              <SimpleButton onClick={handleDeleteYear} label={"Sim"} backgroundColor={"#0088a9"}
-                            color={"#FFFFFF"}/>
+              <SimpleLoadingButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
+                                   color={"#FFFFFF"}/>
+              <SimpleLoadingButton onClick={handleDeleteYear} label={"Sim"} backgroundColor={"#0088a9"}
+                                   color={"#FFFFFF"} loading={loadingDelete}/>
             </div>
           </Modal>
         )}

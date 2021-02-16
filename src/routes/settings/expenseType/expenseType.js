@@ -3,16 +3,18 @@ import SimpleSlidingForm from "../../../components/forms/simpleSlidingForm/simpl
 import useExpenseType from "./expenseTypeLogic";
 import FullyResponsiveTable from "../../../components/tables/fullyResponsiveTable/fullyResponsiveTable";
 import Modal from "../../../components/modal/modal";
-import SimpleButton from "../../../components/buttons/simpleButton";
+import SimpleLoadingButton from "../../../components/buttons/simpleLoadingButton";
 import editIcon from "../../../assets/edit.svg";
 import trashIcon from "../../../assets/trash.svg";
 import infoIcon from "../../../assets/info.svg";
 import "./expenseType.css";
 
 function ExpenseType(props) {
-  const [{expenseTypes, newExpenseType, expenseTypeOnFocus, expenseTypeEdited, editModalVisible, deleteModalVisible},
-    handleSubmit, handleEditSubmit, handleDelete, handleNewExpenseTypeChange, handleNewExpenseTypeEditedChange,
-    openEditModal, closeEditModal, openDeleteModal, closeDeleteModal] = useExpenseType(props.expenseTypes);
+  const [{
+    expenseTypes, newExpenseType, expenseTypeOnFocus, expenseTypeEdited, editModalVisible, deleteModalVisible,
+    loadingEdit, loadingDelete
+  }, handleSubmit, handleEditSubmit, handleDelete, handleNewExpenseTypeChange,
+    handleNewExpenseTypeEditedChange, openEditModal, closeEditModal, openDeleteModal, closeDeleteModal] = useExpenseType(props.expenseTypes);
 
   function renderRow(expenseTypeObject) {
     return (
@@ -60,10 +62,10 @@ function ExpenseType(props) {
               <input type="text" required value={expenseTypeEdited} maxLength="255" autoComplete="off"
                      onChange={handleNewExpenseTypeEditedChange} className="expense-type-input-edit"/>
               <div className="modal-btns-box-1">
-                <SimpleButton onClick={closeEditModal} label={"Cancelar"} backgroundColor={"#e63946"}
-                              color={"#FFFFFF"}/>
-                <SimpleButton onClick={handleEditSubmit} label={"Editar"} backgroundColor={"#0088a9"}
-                              color={"#FFFFFF"}/>
+                <SimpleLoadingButton onClick={closeEditModal} label={"Cancelar"} backgroundColor={"#e63946"}
+                                     color={"#FFFFFF"}/>
+                <SimpleLoadingButton onClick={handleEditSubmit} label={"Editar"} backgroundColor={"#0088a9"}
+                                     color={"#FFFFFF"} loading={loadingEdit}/>
               </div>
             </div>
           </Modal>
@@ -75,10 +77,10 @@ function ExpenseType(props) {
             <h5>Atenção: Todas as despesas relacionadas à este grupo também serão removidas!</h5>
 
             <div className="modal-btns-box-1">
-              <SimpleButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
-                            color={"#FFFFFF"}/>
-              <SimpleButton onClick={handleDelete} label={"Sim"} backgroundColor={"#0088a9"}
-                            color={"#FFFFFF"}/>
+              <SimpleLoadingButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
+                                   color={"#FFFFFF"}/>
+              <SimpleLoadingButton onClick={handleDelete} label={"Sim"} backgroundColor={"#0088a9"}
+                                   color={"#FFFFFF"} loading={loadingDelete}/>
             </div>
           </Modal>
         )}

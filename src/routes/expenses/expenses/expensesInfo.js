@@ -4,7 +4,7 @@ import ErrorMessageContainer from "../../../components/error/errorMessageContain
 import Modal from "../../../components/modal/modal";
 import CustomSelectInput from "../../../components/forms/customSelectInput/customSelectInput";
 import FullyResponsiveTable from "../../../components/tables/fullyResponsiveTable/fullyResponsiveTable";
-import SimpleButton from "../../../components/buttons/simpleButton";
+import SimpleLoadingButton from "../../../components/buttons/simpleLoadingButton";
 import editIcon from "../../../assets/edit.svg";
 import trashIcon from "../../../assets/trash.svg";
 import "./expensesInfo.css";
@@ -23,7 +23,8 @@ function ExpensesInfo(props) {
     updateExpenseInfoPrice,
     updateExpenseInfoPaid,
     updateExpenseInfoExpenseTypeId,
-    deleteModalVisible
+    deleteModalVisible,
+    loadingDelete
   },
     openCreateModal, closeCreateModal, openUpdateModal, closeUpdateModal, openDeleteModal, closeDeleteModal,
     handleCreateExpenseInfoNameChange, handleCreateExpenseInfoPriceChange, handleCreateExpenseInfoPaidChange,
@@ -209,10 +210,10 @@ function ExpensesInfo(props) {
                 <h3>Remover Despesa</h3>
                 <h4>Deseja mesmo remover a despesa "{expenseInfoOnFocus.name}"?</h4>
                 <div className="modal-btns-box-1">
-                  <SimpleButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
-                                color={"#FFFFFF"}/>
-                  <SimpleButton onClick={handleExpenseInfoDelete} label={"Sim"} backgroundColor={"#0088a9"}
-                                color={"#FFFFFF"}/>
+                  <SimpleLoadingButton onClick={closeDeleteModal} label={"Não"} backgroundColor={"#e63946"}
+                                       color={"#FFFFFF"}/>
+                  <SimpleLoadingButton onClick={handleExpenseInfoDelete} label={"Sim"} backgroundColor={"#0088a9"}
+                                       color={"#FFFFFF"} loading={loadingDelete}/>
                 </div>
               </Modal>
             )}
