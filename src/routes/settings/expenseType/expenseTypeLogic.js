@@ -49,7 +49,7 @@ const useExpenseType = (expenseTypeList) => {
 
       ExpenseTypeService.createExpenseType(newExpenseType).then(
         response => {
-          handleSuccessNotification("Tipo de despesa \"" + newExpenseType + "\" cadastrado com sucesso!");
+          handleSuccessNotification("Grupo de despesa \"" + newExpenseType + "\" cadastrado com sucesso!");
 
           let expenseTypesBackup = [...expenseTypes];
           expenseTypesBackup.push(response.data);
