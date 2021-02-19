@@ -37,6 +37,8 @@
 
 .fully-responsive-table > table > tbody tr > td {
     overflow: auto;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 .fully-responsive-table > table > thead, .fully-responsive-table > table > tbody tr {
