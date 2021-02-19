@@ -18,6 +18,10 @@
     margin-left: 10px;
 }
 
+.open-modal-button:hover {
+    background-color: #026d86;
+}
+
 .expenses-info-create-modal h3 {
     margin: 0 0 5px 0;
 }
