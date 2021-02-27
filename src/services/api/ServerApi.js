@@ -2,6 +2,7 @@ import axios from "axios";
 import authHeader from "./AuthHeader";
 
 const getBaseURL = () => {
+  console.log(window.location.hostname)
   return window.location.hostname === "https://monthly-expenses-app.herokuapp.com" ?
     "https://monthly-expenses-server.herokuapp.com" :
     "http://localhost:8080"
