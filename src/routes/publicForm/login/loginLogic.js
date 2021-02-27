@@ -25,7 +25,11 @@ const useLoginForm = () => {
 
     if (username && password) {
       AuthService.login(username, password).then(
-        () => {
+        response => {
+          if (response.data.accessToken) {
+            localStorage.setItem("user", JSON.stringify(response.data));
+          }
+
           setLoading(false);
           history.push("/expenses");
           window.location.reload();

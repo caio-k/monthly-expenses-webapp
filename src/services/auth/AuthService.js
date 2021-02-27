@@ -4,18 +4,10 @@ const API_PATH = "/api/auth/";
 
 class AuthService {
   login(username, password) {
-    return ServerApi
-      .post(API_PATH + "signin", {
-        username,
-        password
-      })
-      .then(response => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-        }
-
-        return response.data;
-      });
+    return ServerApi.post(API_PATH + "signin", {
+      username,
+      password
+    });
   }
 
   logout() {
