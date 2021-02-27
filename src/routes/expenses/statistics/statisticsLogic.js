@@ -10,15 +10,15 @@ const useStatistics = (expensesOnFocus, initialMoneyOnFocus, expenseTypes) => {
   const [openExpensesPrice, setOpenExpensesPrice] = useState(null);
   const colors = [
     "rgb(255, 159, 64)",
-    "rgb(255, 205, 86)",
     "rgb(65, 234, 212)",
-    "rgb(54, 162, 235)",
     "rgb(255, 99, 132)",
+    "rgb(54, 162, 235)",
     "rgb(221, 184, 146)",
+    "rgb(164, 128, 207)",
     "rgb(193, 251, 164)",
+    "rgb(255, 205, 86)",
     "rgb(61, 90, 128)",
-    "rgb(111, 160, 17)",
-    "rgb(164, 128, 207)"
+    "rgb(111, 160, 17)"
   ];
 
   useEffect(() => {
