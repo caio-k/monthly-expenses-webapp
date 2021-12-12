@@ -4,7 +4,7 @@ const API_PATH = "/api/initialMoney/";
 
 class InitialMoneyService {
   createInitialMoney(yearNumber, month, initialMoney) {
-    return ServerApi.post(API_PATH + 'create', {
+    return ServerApi.post(API_PATH, {
       yearNumber,
       month,
       initialMoney
@@ -12,7 +12,7 @@ class InitialMoneyService {
   }
 
   updateYear(initialMoneyId, initialMoney) {
-    return ServerApi.put(API_PATH + 'update', {
+    return ServerApi.put(API_PATH, {
       initialMoneyId,
       initialMoney
     });
