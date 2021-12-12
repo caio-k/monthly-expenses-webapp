@@ -4,7 +4,7 @@ const API_PATH = "/api/expenseInfo/";
 
 class ExpensesInfoService {
   createExpenseInfo(yearNumber, monthNumber, name, price, paid, expenseTypeId) {
-    return ServerApi.post(API_PATH + 'post', {
+    return ServerApi.post(API_PATH, {
       yearNumber,
       monthNumber,
       name,
@@ -15,7 +15,7 @@ class ExpensesInfoService {
   }
 
   updateExpenseInfo(expenseId, name, price, paid, expenseTypeId) {
-    return ServerApi.put(API_PATH + 'put', {
+    return ServerApi.put(API_PATH, {
       expenseId,
       name,
       price,
@@ -25,7 +25,7 @@ class ExpensesInfoService {
   }
 
   deleteExpenseInfo(expenseId) {
-    return ServerApi.delete(API_PATH + 'delete', {
+    return ServerApi.delete(API_PATH, {
       params: {
         expenseId
       }

@@ -1,13 +1,8 @@
-import React, {useEffect} from "react";
+import React from "react";
 import spreadsheets from "../../assets/spreadsheet.svg";
-import StartServerService from "../../services/startServer/StartServerService";
 import "./home.css";
 
 function Home() {
-  useEffect(() => {
-    StartServerService.startServer().then();
-  }, []);
-
   return (
     <div className="home-container">
       <div>

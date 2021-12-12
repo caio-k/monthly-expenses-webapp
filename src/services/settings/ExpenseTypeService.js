@@ -5,20 +5,20 @@ const API_PATH = "/api/expenseType/";
 class ExpenseTypeService {
 
   createExpenseType(expenseTypeName) {
-    return ServerApi.post(API_PATH + 'create', {
+    return ServerApi.post(API_PATH, {
       expenseTypeName
     });
   }
 
   updateExpenseType(id, expenseTypeName) {
-    return ServerApi.put(API_PATH + 'update', {
+    return ServerApi.put(API_PATH, {
       id,
       expenseTypeName
     });
   }
 
   deleteExpenseType(expenseTypeId) {
-    return ServerApi.delete(API_PATH + 'delete', {
+    return ServerApi.delete(API_PATH, {
       params: {
         expenseTypeId
       }
