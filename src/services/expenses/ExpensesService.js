@@ -4,11 +4,11 @@ const API_PATH = "/api/expense/";
 
 class ExpensesService {
   getInitializationData() {
-    return ServerApi.get(API_PATH + 'initializationData');
+    return ServerApi.get(API_PATH + 'initialization-data');
   }
 
   getByMonthAndYear(monthNumber, yearNumber) {
-    return ServerApi.get(API_PATH + 'byMonthAndYear', {
+    return ServerApi.get(API_PATH + 'by-month-and-year', {
       params: {
         monthNumber,
         yearNumber

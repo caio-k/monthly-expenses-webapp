@@ -1,6 +1,6 @@
 import ServerApi from "../api/ServerApi";
 
-const API_PATH = "/api/expenseType/";
+const API_PATH = "/api/expense-type/";
 
 class ExpenseTypeService {
 

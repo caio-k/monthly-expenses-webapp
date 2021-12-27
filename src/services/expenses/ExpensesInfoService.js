@@ -1,6 +1,6 @@
 import ServerApi from "../api/ServerApi";
 
-const API_PATH = "/api/expenseInfo/";
+const API_PATH = "/api/expense-info/";
 
 class ExpensesInfoService {
   createExpenseInfo(yearNumber, monthNumber, name, price, paid, expenseTypeId) {
